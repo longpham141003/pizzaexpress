@@ -1,4 +1,5 @@
 import { useCart } from './CartContext';
+import { useRouter } from 'next/router';
 
 function formatPrice(n) {
   return n.toLocaleString('vi-VN') + '₫';
@@ -6,6 +7,7 @@ function formatPrice(n) {
 
 export default function CartPopup() {
   const { items, showCart, setShowCart, removeFromCart, totalPrice } = useCart();
+  const router = useRouter();
 
   if (!showCart) return null;
 
@@ -40,7 +42,7 @@ export default function CartPopup() {
             </div>
             {/* ponytail: action buttons matching original */}
             <div className="cart-popup__actions">
-              <button className="cart-popup__btn cart-popup__btn--detail" onClick={() => setShowCart(false)}>Chi tiết giỏ hàng</button>
+              <button className="cart-popup__btn cart-popup__btn--detail" onClick={() => { setShowCart(false); router.push('/gio-hang'); }}>Chi tiết giỏ hàng</button>
               <button className="cart-popup__btn cart-popup__btn--continue" onClick={() => setShowCart(false)}>Tiếp tục mua hàng</button>
             </div>
           </>

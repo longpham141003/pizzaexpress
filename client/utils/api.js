@@ -1,4 +1,4 @@
-import productsData from '../data/products.json';
+﻿import productsData from '../data/products.json';
 import siteContent from '../data/site-content.json';
 import blogPosts from '../data/blog-posts.json';
 import customPages from '../data/custom-pages.json';
@@ -22,14 +22,14 @@ async function fetchWithFallback(endpoint, mockData) {
 
 export async function getSettings() {
   const fallback = siteContent.settings || {
-    siteName: "Pizza Express",
+    siteName: "NIA PIZZA VIỆT NAM",
     logoPath: "/wp-content/uploads/2018/05/logo.png",
     slogan: "Pizza ngon - Giá rẻ - Vận chuyển tận nhà",
-    companyName: "Công ty TNHH Pizza Express Việt Nam",
+    companyName: "NIA PIZZA VIỆT NAM",
     businessRegNumber: "0106675108",
     companyAddress: "Số 352 Đường Bưởi, P.Vĩnh Phúc, Q.Ba Đình, TP.Hà Nội",
-    hotline: "(024) 36.888.777",
-    feedbackPhone: "0977.128.833",
+    hotline: "0973.198.462",
+    feedbackPhone: "0973.198.462",
     email: "lienhepizzaexpress@gmail.com",
     zaloUrl: "https://zalo.me/0819180706",
     messengerUrl: "http://m.me/119445844878458",
@@ -78,11 +78,10 @@ export async function getBanners() {
   const fallback = siteContent.banners || [];
   const data = await fetchWithFallback('banners', fallback);
   return data.map(b => ({
+    id: b.id || null,
     title: b.title || null,
-    desktop: b.desktopImagePath ? `http://localhost:5290/${b.desktopImagePath}` : (b.desktopImage || null),
-    mobile: b.mobileImagePath ? `http://localhost:5290/${b.mobileImagePath}` : (b.mobileImage || null),
-    desktopImage: b.desktopImagePath ? `http://localhost:5290/${b.desktopImagePath}` : (b.desktopImage || null),
-    mobileImage: b.mobileImagePath ? `http://localhost:5290/${b.mobileImagePath}` : (b.mobileImage || null),
+    desktop: b.desktopImagePath ? `http://localhost:5290/${b.desktopImagePath}` : (b.desktopImage || b.desktop || null),
+    mobile: b.mobileImagePath ? `http://localhost:5290/${b.mobileImagePath}` : (b.mobileImage || b.mobile || null),
     link: b.linkUrl || b.link || null
   }));
 }
@@ -99,7 +98,10 @@ export async function getCategories() {
 }
 
 export async function getProducts(categoryId = null) {
-  const fallback = productsData.products;
+  const allProducts = productsData.categories.flatMap(c =>
+    (c.products || []).map(p => ({ ...p, categorySlug: c.slug, categoryName: c.name }))
+  );
+  const fallback = categoryId ? allProducts.filter(p => p.categorySlug === categoryId) : allProducts;
   const endpoint = categoryId ? `products?categoryId=${categoryId}` : 'products';
   const data = await fetchWithFallback(endpoint, fallback);
   return data.map(p => ({
@@ -147,6 +149,7 @@ export async function getLocations() {
   const data = await fetchWithFallback('locations', fallback);
   return data.map(l => ({
     address: l.address || null,
+    phone: l.phone || null,
     mapUrl: l.mapUrl || null,
     icon: l.iconPath ? `http://localhost:5290/${l.iconPath}` : (l.icon || '/wp-content/uploads/2018/05/location_icon.png')
   }));

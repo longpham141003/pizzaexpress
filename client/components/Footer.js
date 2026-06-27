@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { getSettings, getLocations } from '../utils/api';
 
 export default function Footer({ stores: propStores, features = [] }) {
@@ -14,13 +14,13 @@ export default function Footer({ stores: propStores, features = [] }) {
 
   const activeStores = propStores || stores || [];
 
-  const footerLogoUrl = settings?.footerLogoPath 
-    ? (settings.footerLogoPath.startsWith('http') ? settings.footerLogoPath : `http://localhost:5290/${settings.footerLogoPath}`) 
-    : "/wp-content/uploads/2018/05/footer_logo.png";
+  const footerLogoUrl = settings?.footerLogoPath
+    ? (settings.footerLogoPath.startsWith('http') ? settings.footerLogoPath : `http://localhost:5290/${settings.footerLogoPath}`)
+    : "/logo-nia-pizza.png";
 
   const companyName = settings?.companyName || "Công ty TNHH Pizza Express Việt Nam";
-  const hotline = settings?.hotline || "(024) 36.888.777";
-  const feedbackPhone = settings?.feedbackPhone || "0977.128.833";
+  const hotline = settings?.hotline || "0973.198.462";
+  const feedbackPhone = settings?.feedbackPhone || "0973.198.462";
   const email = settings?.email || "lienhepizzaexpress@gmail.com";
   const businessReg = settings?.businessRegNumber || "0106675108";
   const address = settings?.companyAddress || "Số 352 Đường Bưởi, P.Vĩnh Phúc, Q.Ba Đình, TP.Hà Nội";
@@ -51,12 +51,10 @@ export default function Footer({ stores: propStores, features = [] }) {
       {/* Footer */}
       <footer id="footer" className="footer">
         <div className="container">
-          <img className="footer__logo" src={footerLogoUrl} alt="Pizza Express" />
+          <img className="footer__logo" src={footerLogoUrl} alt="NIA PIZZA VIỆT NAM" />
           <h4 className="footer__company">{companyName}</h4>
           <div className="footer__info">
             <p>Để đặt bánh pizza, vui lòng liên hệ tổng đài số: <a href={`tel:${hotline.replace(/[^0-9]/g, '')}`}>{hotline}</a></p>
-            <p>Để phản ánh chất lượng dịch vụ, vui lòng gọi số: <a href={`tel:${feedbackPhone.replace(/[^0-9]/g, '')}`}>{feedbackPhone}</a></p>
-            <p>Email: <a href={`mailto:${email}`}>{email}</a></p>
           </div>
           
           <div className="footer__policies">
@@ -70,6 +68,7 @@ export default function Footer({ stores: propStores, features = [] }) {
               <div key={i} className="store-item">
                 <img src={s.icon} alt={`Cửa hàng ${i + 1}`} />
                 <p>{s.address}</p>
+                {s.phone && <p><a href={`tel:${s.phone}`}>{s.phone}</a></p>}
                 {s.mapUrl && <a href={s.mapUrl} target="_blank" rel="noreferrer" className="store-item__map">📍 Xem trên bản đồ</a>}
               </div>
             ))}
@@ -80,8 +79,7 @@ export default function Footer({ stores: propStores, features = [] }) {
             <img src="/bo-cong-thuong.png" alt="Đã thông báo Bộ Công Thương" />
           </div>
           <div className="footer__legal">
-            <p>{companyName} Số ĐKKD: {businessReg}</p>
-            <p>Địa Chỉ: {address}</p>
+            <p>Bản quyền thuộc về {companyName}</p>
           </div>
         </div>
       </footer>

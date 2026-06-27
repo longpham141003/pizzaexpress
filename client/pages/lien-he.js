@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import PageLayout from '../components/PageLayout';
 import { getSettings, getLocations, submitContact } from '../utils/api';
 
@@ -8,8 +8,8 @@ export default function LienHe({ settings = {}, stores = [] }) {
   const [submitting, setSubmitting] = useState(false);
 
   const companyName = settings.companyName || "Công ty TNHH Pizza Express Việt Nam";
-  const hotline = settings.hotline || "(024) 36.888.777";
-  const feedbackPhone = settings.feedbackPhone || "0977.128.833";
+  const hotline = settings.hotline || "0973.198.462";
+  const feedbackPhone = settings.feedbackPhone || "0973.198.462";
   const email = settings.email || "lienhepizzaexpress@gmail.com";
 
   const handleSubmit = async (e) => {
@@ -31,7 +31,7 @@ export default function LienHe({ settings = {}, stores = [] }) {
     <PageLayout
       title="Liên hệ"
       breadcrumbs={[{ label: 'Liên hệ' }]}
-      metaDesc="Pizza Express: Pizza ngon - Giá rẻ - Vận chuyển tận nhà. Tổng đài đặt pizza: (024) 36.888.777"
+      metaDesc="Pizza Express: Pizza ngon - Giá rẻ - Vận chuyển tận nhà. Tổng đài đặt pizza: 0973.198.462"
     >
       <section className="page-content contact-page">
         <div className="container">
@@ -41,11 +41,9 @@ export default function LienHe({ settings = {}, stores = [] }) {
               <h3>{companyName}</h3>
               <p>Để đặt bánh pizza, vui lòng liên hệ tổng đài số: <a href={`tel:${hotline.replace(/[^0-9]/g, '')}`}>{hotline}</a></p>
               <p>Để phản ánh chất lượng dịch vụ, vui lòng gọi số: <a href={`tel:${feedbackPhone.replace(/[^0-9]/g, '')}`}>{feedbackPhone}</a></p>
-              <p>Email: <a href={`mailto:${email}`}>{email}</a></p>
-
               {stores && stores.length > 0 && (
                 <>
-                  <h4>Các CƠ SỞ PIZZA EXPRESS</h4>
+                  <h4>Các CƠ SỞ NIA PIZZA VIỆT NAM</h4>
                   <div className="store-list">
                     {stores.map((s, i) => (
                       <div key={i} className="store-item">
@@ -59,13 +57,13 @@ export default function LienHe({ settings = {}, stores = [] }) {
 
             <div className="contact-map">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0!2d105.809476!3d21.020799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDAxJzE0LjkiTiAxMDXCsDQ4JzM0LjEiRQ!5e0!3m2!1svi!2s!4v1"
+                src="https://maps.google.com/maps?q=396+ph%E1%BB%91+V%C4%83n+Giang%2C+H%C6%B0ng+Y%C3%AAn&output=embed"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
-                title="Pizza Express Location"
+                title="NIA PIZZA VIỆT NAM - 396 phố Văn Giang, Hưng Yên"
               />
             </div>
           </div>

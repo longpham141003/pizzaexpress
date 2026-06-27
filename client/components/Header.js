@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useCart } from './CartContext';
 import { getSettings, getMenu } from '../utils/api';
 
@@ -35,12 +35,12 @@ export default function Header() {
 
   const fmtPrice = (n) => (n || 0).toLocaleString('vi-VN');
 
-  const logoUrl = settings?.logoPath 
-    ? (settings.logoPath.startsWith('http') ? settings.logoPath : `http://localhost:5290/${settings.logoPath}`) 
-    : "/wp-content/uploads/2018/05/logo.png";
+  const logoUrl = settings?.logoPath
+    ? (settings.logoPath.startsWith('http') ? settings.logoPath : `http://localhost:5290/${settings.logoPath}`)
+    : "/logo-nia-pizza.png";
 
   const slogan = settings?.slogan || "Pizza ngon - Giá rẻ - Vận chuyển tận nhà";
-  const hotline = settings?.hotline || "(024) 36.888.777";
+  const hotline = settings?.hotline || "0973.198.462";
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function Header() {
       <header className={`header${scrolled ? ' scrolled' : ''}`}>
         <div className="container">
           <a href="/" className="header__logo">
-            <img src={logoUrl} alt="Pizza Express" />
+            <img src={logoUrl} alt="NIA PIZZA VIỆT NAM" onError={e => { e.currentTarget.src = '/logo-nia-pizza.png'; }} />
           </a>
           <span className="header__tagline">{slogan}</span>
           
