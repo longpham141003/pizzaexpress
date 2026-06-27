@@ -18,7 +18,7 @@ builder.Services.AddScoped<AuditService>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<AppDbContext>(o =>
-    o.UseSqlite(builder.Configuration.GetConnectionString("Default"))
+    o.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
      .ConfigureWarnings(w => w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning)));
 
 builder.Services.AddDefaultIdentity<AppUser>(o =>

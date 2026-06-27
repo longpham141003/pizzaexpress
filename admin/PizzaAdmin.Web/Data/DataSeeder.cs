@@ -116,10 +116,9 @@ public static class DataSeeder
 
         // ── Locations ──
         db.Locations.AddRange(
-            new Location { Name = "Chi nhánh 1", Address = "107 D3 Ngọc Khánh, Giảng Võ", MapUrl = "https://www.pizzaexpress.vn/lien-he/", SortOrder = 0 },
-            new Location { Name = "Chi nhánh 2", Address = "14 Ngõ 497 Nguyễn Trãi, Thanh Liệt", MapUrl = "https://www.pizzaexpress.vn/lien-he/", SortOrder = 1 },
-            new Location { Name = "Chi nhánh 3", Address = "6 Đồng Bát, Từ Liêm", MapUrl = "https://www.pizzaexpress.vn/lien-he/", SortOrder = 2 },
-            new Location { Name = "Chi nhánh 4", Address = "74 Ngõ 521 Trương Định, Hoàng Mai", MapUrl = "https://www.pizzaexpress.vn/lien-he/", SortOrder = 3 }
+            new Location { Name = "Cơ sở 1", Address = "396 phố Văn Giang, Hưng Yên", Phone = "0973198462", MapUrl = "https://maps.google.com/maps?q=396+ph%E1%BB%91+V%C4%83n+Giang%2C+H%C6%B0ng+Y%C3%AAn", SortOrder = 0 },
+            new Location { Name = "Cơ sở 2", Address = "14 Ngõ 497 Nguyễn Trãi, Thanh Liệt", Phone = "0981636582", MapUrl = "https://www.pizzaexpress.vn/lien-he/", SortOrder = 1 },
+            new Location { Name = "Cơ sở 3", Address = "6 Đồng Bát, Từ Liêm", Phone = "0985300804", MapUrl = "https://www.pizzaexpress.vn/lien-he/", SortOrder = 2 }
         );
 
         // ── Reviews ──
@@ -139,10 +138,10 @@ public static class DataSeeder
 
         // ── Features (4 điểm nổi bật) ──
         db.Features.AddRange(
-            new Feature { Title = "Chất lượng dẫn đầu", Description = "Chú trọng khâu tuyển chọn đội ngũ đầu bếp chuyên nghiệp, thực đơn của Pizza Express luôn được đổi mới, đa dạng.", IconPath = "uploads/images/footer_01.png", SortOrder = 0 },
-            new Feature { Title = "Giao hàng đúng giờ", Description = "Pizza Express cam kết luôn giao hàng đúng giờ và chi phí giao hàng rẻ nhất.", IconPath = "uploads/images/footer_02.png", SortOrder = 1 },
+            new Feature { Title = "Chất lượng dẫn đầu", Description = "Chú trọng khâu tuyển chọn đội ngũ đầu bếp chuyên nghiệp, thực đơn của NIA PIZZA luôn được đổi mới, đa dạng.", IconPath = "uploads/images/footer_01.png", SortOrder = 0 },
+            new Feature { Title = "Giao hàng đúng giờ", Description = "NIA PIZZA cam kết luôn giao hàng đúng giờ và chi phí giao hàng rẻ nhất.", IconPath = "uploads/images/footer_02.png", SortOrder = 1 },
             new Feature { Title = "Pizza Take Away", Description = "Mô hình Pizza take away - pizza mang đi giúp khách hàng tiết kiệm thời gian.", IconPath = "uploads/images/footer_03.png", SortOrder = 2 },
-            new Feature { Title = "Phục vụ chuyên nghiệp", Description = "Đội ngũ nhân viên mang đầy sức trẻ và nhiệt huyết, luôn lắng nghe nhu cầu của Quý khách.", IconPath = "uploads/images/footer_04.png", SortOrder = 3 }
+            new Feature { Title = "Phục vụ chuyên nghiệp", Description = "Đội ngũ nhân viên NIA PIZZA mang đầy sức trẻ và nhiệt huyết, luôn lắng nghe nhu cầu của Quý khách.", IconPath = "uploads/images/footer_04.png", SortOrder = 3 }
         );
 
         // ── Menu Items ──
@@ -158,29 +157,26 @@ public static class DataSeeder
         // ── Site Settings ──
         db.SiteSettings.Add(new SiteSetting
         {
-            SiteName = "Pizza Express",
-            LogoPath = "uploads/images/logo.png",
-            FooterLogoPath = "uploads/images/footer_logo.png",
+            SiteName = "NIA PIZZA VIỆT NAM",
+            LogoPath = "uploads/images/logo-nia-pizza.png",
+            FooterLogoPath = "uploads/images/logo-nia-pizza.png",
             Slogan = "Pizza ngon - Giá rẻ - Vận chuyển tận nhà",
-            CompanyName = "Công ty TNHH Pizza Express Việt Nam",
-            BusinessRegNumber = "0106675108",
-            CompanyAddress = "Số 352 Đường Bưởi, P.Vĩnh Phúc, Q.Ba Đình, TP.Hà Nội",
-            Hotline = "(024) 36.888.777",
-            FeedbackPhone = "0977.128.833",
-            Email = "lienhepizzaexpress@gmail.com",
-            ZaloUrl = "https://zalo.me/0819180706",
+            CompanyName = "NIA PIZZA VIỆT NAM",
+            BusinessRegNumber = "",
+            CompanyAddress = "396 phố Văn Giang, Hưng Yên",
+            Hotline = "0973.198.462",
+            FeedbackPhone = "0973.198.462",
+            Email = "admin@niapizza.com.vn",
+            ZaloUrl = "https://zalo.me/0973198462",
             MessengerUrl = "http://m.me/119445844878458",
-            SeoTitle = "Pizza, Đặt pizza ngon, giá rẻ tại Pizza Express",
-            SeoDescription = "Pizza Express - Pizza ngon, giá rẻ, khuyến mãi cả tuần. Mua 1 tặng 1 chỉ với 160.000đ. Tổng đài (24/7): (024) 36.888.777.",
-            GoogleAnalyticsId = "UA-127455965-1",
-            GtmId = "GTM-K99MBWR",
-            GoogleAdsId = "AW-945364856",
+            SeoTitle = "Pizza, Đặt pizza ngon, giá rẻ tại NIA PIZZA VIỆT NAM",
+            SeoDescription = "NIA PIZZA VIỆT NAM - Pizza ngon, giá rẻ, khuyến mãi cả tuần. Tổng đài: 0973.198.462.",
             PrimaryColor = "#c00a27",
             SecondaryColor = "#a9001b",
             AccentColor = "#ff9c00",
-            PrivacyPolicyUrl = "https://www.pizzaexpress.vn/chinh-sach-bao-mat-thong-tin/",
-            ReturnPolicyUrl = "https://www.pizzaexpress.vn/chinh-sach-doi-tra-san-pham-va-hoan-tien/",
-            PaymentPolicyUrl = "https://www.pizzaexpress.vn/chinh-sach-thanh-toan/",
+            PrivacyPolicyUrl = "/chinh-sach/",
+            ReturnPolicyUrl = "/chinh-sach/",
+            PaymentPolicyUrl = "/chinh-sach/",
         });
 
         await db.SaveChangesAsync();
