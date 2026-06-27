@@ -1,0 +1,17 @@
+@model Feature
+@{ ViewData["Title"] = Model.Id == 0 ? "Thêm điểm nổi bật" : "Sửa điểm nổi bật"; }
+<div class="page-header"><h2>@ViewData["Title"]</h2><a href="/admin/features" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a></div>
+<div class="card" style="max-width:600px"><div class="card-body">
+<form method="post" asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id" enctype="multipart/form-data">
+<div class="form-group"><label asp-for="Title">Tiêu đề</label><input asp-for="Title" class="form-control" placeholder="VD: Chất lượng dẫn đầu" /></div>
+<div class="form-group"><label asp-for="Description">Mô tả</label><textarea asp-for="Description" class="form-control" rows="3"></textarea></div>
+<div class="form-group"><label>Icon/Ảnh</label>
+@if(!string.IsNullOrEmpty(Model.IconPath)){<img id="featPreview" src="@(Model.IconPath.StartsWith("/") ? Model.IconPath : "/" + Model.IconPath)" class="img-preview" style="display:block;margin-bottom:0.5rem" />}
+else {<img id="featPreview" class="img-preview" style="display:none;margin-bottom:0.5rem" />}
+<input type="file" name="iconFile" accept="image/*" class="form-control" onchange="previewImage(this,'featPreview')" /></div>
+<div class="form-row">
+<div class="form-group"><label asp-for="SortOrder">Thứ tự</label><input asp-for="SortOrder" type="number" class="form-control" /></div>
+<div class="form-group"><label>Trạng thái</label><label class="form-check" style="margin-top:0.5rem"><input asp-for="IsActive" type="checkbox" /><span>Hiển thị</span></label></div>
+</div>
+<button type="submit" class="btn btn-primary"><span class="material-symbols-outlined">save</span> Lưu</button>
+</form></div></div>

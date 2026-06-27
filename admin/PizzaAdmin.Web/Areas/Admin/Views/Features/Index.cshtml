@@ -1,0 +1,15 @@
+@model List<Feature>
+@{ ViewData["Title"] = "Quản lý Điểm nổi bật"; }
+<div class="page-header"><h2>Điểm nổi bật (@Model.Count)</h2><a href="/admin/features/create" class="btn btn-primary"><span class="material-symbols-outlined">add</span> Thêm</a></div>
+<div class="card"><div class="table-responsive"><table class="admin-table">
+<thead><tr><th>Icon</th><th>Tiêu đề</th><th>Mô tả</th><th>TT</th><th>Trạng thái</th><th class="text-right">Thao tác</th></tr></thead>
+<tbody>
+@foreach (var f in Model){<tr>
+<td>@if(!string.IsNullOrEmpty(f.IconPath)){<img src="@(f.IconPath.StartsWith("/") ? f.IconPath : "/" + f.IconPath)" class="thumb" alt="" />}</td>
+<td class="fw-500">@f.Title</td><td class="text-sm" style="max-width:250px">@(f.Description?.Length > 80 ? f.Description[..80] + "..." : f.Description)</td><td>@f.SortOrder</td>
+<td>@(f.IsActive ? Html.Raw("<span class='badge badge-success'>Hiện</span>") : Html.Raw("<span class='badge badge-warning'>Ẩn</span>"))</td>
+<td class="actions"><a href="/admin/features/edit/@f.Id" class="btn btn-sm btn-secondary"><span class="material-symbols-outlined">edit</span></a>
+<form id="del-ft-@f.Id" method="post" asp-action="Delete" asp-route-id="@f.Id" style="display:inline"></form>
+<button class="btn btn-sm btn-danger" onclick="confirmDelete('del-ft-@f.Id','@f.Title')"><span class="material-symbols-outlined">delete</span></button></td></tr>}
+@if (!Model.Any()){<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">auto_awesome</span><p>Chưa có điểm nổi bật nào</p></div></td></tr>}
+</tbody></table></div></div>

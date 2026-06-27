@@ -1,0 +1,17 @@
+@model Review
+@{ ViewData["Title"] = Model.Id == 0 ? "Thêm đánh giá" : "Sửa đánh giá"; }
+<div class="page-header"><h2>@ViewData["Title"]</h2><a href="/admin/reviews" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a></div>
+<div class="card" style="max-width:600px"><div class="card-body">
+<form method="post" asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id" enctype="multipart/form-data">
+<div class="form-group"><label asp-for="CustomerName">Tên khách hàng</label><input asp-for="CustomerName" class="form-control" placeholder="VD: Nguyễn Văn A" /></div>
+<div class="form-group"><label asp-for="Content">Nội dung đánh giá</label><textarea asp-for="Content" class="form-control" rows="4" placeholder="Nhập phản hồi của khách hàng..."></textarea></div>
+<div class="form-group"><label>Ảnh đại diện (Avatar)</label>
+@if(!string.IsNullOrEmpty(Model.AvatarPath)){<img id="revPreview" src="@(Model.AvatarPath.StartsWith("/") ? Model.AvatarPath : "/" + Model.AvatarPath)" class="img-preview" style="display:block;margin-bottom:0.5rem;border-radius:50%" />}
+else {<img id="revPreview" class="img-preview" style="display:none;margin-bottom:0.5rem;border-radius:50%" />}
+<input type="file" name="avatarFile" accept="image/*" class="form-control" onchange="previewImage(this,'revPreview')" /></div>
+<div class="form-row">
+<div class="form-group"><label asp-for="SortOrder">Thứ tự</label><input asp-for="SortOrder" type="number" class="form-control" /></div>
+<div class="form-group"><label>Trạng thái</label><label class="form-check" style="margin-top:0.5rem"><input asp-for="IsActive" type="checkbox" /><span>Hiển thị</span></label></div>
+</div>
+<button type="submit" class="btn btn-primary"><span class="material-symbols-outlined">save</span> Lưu</button>
+</form></div></div>

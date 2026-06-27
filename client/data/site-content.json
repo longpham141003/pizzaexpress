@@ -1,0 +1,47 @@
+{
+  "banners": [
+    {
+      "id": "anh-3",
+      "desktop": "https://www.pizzaexpress.vn/wp-content/uploads/2026/06/Giảm-20-web.jpg",
+      "mobile": "https://www.pizzaexpress.vn/wp-content/uploads/2026/06/Giảm-20-mobile.jpg"
+    },
+    {
+      "id": "anh-1",
+      "desktop": "https://www.pizzaexpress.vn/wp-content/uploads/2026/06/2-pizza-chỉ-từ-160k-web.jpg",
+      "mobile": "https://www.pizzaexpress.vn/wp-content/uploads/2026/06/2-Pizza-chỉ-từ-160k-mobile.jpg"
+    },
+    {
+      "id": "anh-2",
+      "desktop": "https://www.pizzaexpress.vn/wp-content/uploads/2020/12/test.jpg",
+      "mobile": "https://www.pizzaexpress.vn/wp-content/uploads/2025/11/sinhnhat-1160-x-800-780x538.jpg"
+    },
+    {
+      "id": "anh-32",
+      "desktop": "https://www.pizzaexpress.vn/wp-content/uploads/2024/08/mua-1-pizza-tặng-1-coca.jpg",
+      "mobile": "https://www.pizzaexpress.vn/wp-content/uploads/2024/10/Mua-1-pizza-Tặng-1-coca-Mobile-web-Custom-1-780x585.jpg"
+    }
+  ],
+  "reviews": [
+    { "name": "Phuongmac17", "avatar": "https://www.pizzaexpress.vn/wp-content/uploads/2018/08/12.png", "content": "Có mặt sau 40p, nóng hổi. Pizza khá giống pepperonis nhưng pepp mà để mua 1 tặng 1 thì nhân chán lắm, lèo tèo. Chẳng bù cho bạn này nhân vẫn đầy đặn, phô mai vừa vặn thơm ngon. Rất là ok! 3 đứa ăn 2 cái M mà lặc lè. Sẽ còn order dài <3" },
+    { "name": "Lê Phương", "avatar": "https://www.pizzaexpress.vn/wp-content/uploads/2018/08/19.png", "content": "Pizza Express Ngọc Khánh khá xa nhà mình nhưng thấy bạn bảo ăn cũng ngon, giá cũng rẻ, pizza sz 24cm cũng chỉ có 100k 1 cái thôi. Gọi hawaiian và beefy, cái nào cũng ngon, beefy cho nhiều phô mai lắm" },
+    { "name": "Van Hai", "avatar": "https://www.pizzaexpress.vn/wp-content/uploads/2018/08/10.png", "content": "Vỏ bánh giòn rụm, k cứng, lớp phô mai béo ngậy, thơm thơm. Tối k ăn hết mình cho vào tủ lạnh mai lôi ra ăn sáng vẫn đc, mặc dù cho vào lò vi sóng mà bánh gần như vẫn giữ đc hương vị lúc đầu" },
+    { "name": "Thư Hoàng", "avatar": "https://www.pizzaexpress.vn/wp-content/uploads/2018/08/9.png", "content": "Đợt trước lớp mình ăn liên hoan nên gọi Pizza ở đây ship đến. Gọi 2 loại là pizza bò băm và pizza xúc xích. Về bề ngoài thì trông cũng đẹp mắt, ngon miệng và tương đối đầy đặn. Vỏ bánh có độ dày vừa phải, không bị mỏng quá và giòn" },
+    { "name": "Hà Trần", "avatar": "https://www.pizzaexpress.vn/wp-content/uploads/2018/08/4.png", "content": "Mỳ nhiều ú ụ mà mình thấy sợi mỳ ở đây ngon hơn những chỗ khác. Sốt bò băm mà có nhiều thịt bò với nước ăn khá là ngon. Tóm lại mình khá thích ăn mỳ ý ở đây" },
+    { "name": "Anh Đức", "avatar": "https://www.pizzaexpress.vn/wp-content/uploads/2018/08/5.png", "content": "Ở bên này nhân viên giao hàng cũng rất nhanh, thân thiện và đáng yêu lắm nhé, lúc mình xuống lấy pizza khen đúng giờ các thứ thế là cười bẽn lẽn hihi. Vì bánh giao nhanh lên khi đến nơi vẫn nóng, ăn vẫn ngon." },
+    { "name": "Trần Hiếu", "avatar": "https://www.pizzaexpress.vn/wp-content/uploads/2018/08/7.png", "content": "Đã gọi pizza ở đây khá nhiều lần. Pizza đế dày, mùi vị cũng được và đặc biệt là luôn giao hàng đúng giờ, pizza lúc giao đến luôn nóng hổi" },
+    { "name": "Hải Yến", "avatar": "https://www.pizzaexpress.vn/wp-content/uploads/2018/08/6.png", "content": "Mình có code giảm 200k nên đang từ 397k gồm 7k tiền ship thì chỉ còn 197k thôi. Giá gốc đã không đắt, thêm code nữa còn có xấp xỉ 200k nên thấy quá là rẻ luôn. Ship sớm hơn giờ hẹn :)))" },
+    { "name": "Nhi Nhi", "avatar": "https://www.pizzaexpress.vn/wp-content/uploads/2018/08/8.png", "content": "Đã ăn thử pizza tại đây mình thấy nhân viên giao bánh khá nhanh và thân thiện. Khi giao đến nơi bánh vẫn nóng không bị nguội. Đế bánh giòn không bị dày quá ăn vừa miệng." }
+  ],
+  "features": [
+    { "icon": "https://www.pizzaexpress.vn/wp-content/uploads/2018/05/footer_01.png", "title": "Chất lượng dẫn đầu", "desc": "Chú trọng khâu tuyển chọn đội ngũ đầu bếp chuyên nghiệp, thực đơn của Pizza Express luôn được đổi mới, đa dạng với pizza nhiều hương vị, sandwich, mỳ ý và các món ăn nhanh khác." },
+    { "icon": "https://www.pizzaexpress.vn/wp-content/uploads/2018/05/footer_02.png", "title": "Giao hàng đúng giờ", "desc": "Để tăng cường sự tin tưởng và yên tâm với khách hàng, Pizza Express cam kết luôn giao hàng đúng giờ và chi phí giao hàng rẻ nhất." },
+    { "icon": "https://www.pizzaexpress.vn/wp-content/uploads/2018/05/footer_03.png", "title": "Pizza Take Away", "desc": "Lựa chọn cho mình một hướng đi mới để tạo nên sự khác biệt, mô hình Pizza take away giúp khách hàng tiết kiệm thời gian." },
+    { "icon": "https://www.pizzaexpress.vn/wp-content/uploads/2018/05/footer_04.png", "title": "Phục vụ chuyên nghiệp", "desc": "Pizza Express cùng với đội ngũ nhân viên mang đầy sức trẻ và nhiệt huyết, chúng tôi luôn mong muốn đem lại cho khách hàng chất lượng dịch vụ tốt nhất." }
+  ],
+  "stores": [
+    { "address": "107 D3 Ngọc Khánh, Giảng Võ", "icon": "https://www.pizzaexpress.vn/wp-content/uploads/2018/05/so_01.png", "mapUrl": "https://maps.google.com/?q=107+D3+Ngọc+Khánh" },
+    { "address": "14 Ngõ 497 Nguyễn Trãi, Thanh Liệt", "icon": "https://www.pizzaexpress.vn/wp-content/uploads/2018/05/so_02.png", "mapUrl": "https://maps.google.com/?q=14+Ngõ+497+Nguyễn+Trãi" },
+    { "address": "6 Đồng Bát, Từ Liêm", "icon": "https://www.pizzaexpress.vn/wp-content/uploads/2018/05/so_03.png", "mapUrl": "https://maps.google.com/?q=6+Đồng+Bát+Từ+Liêm" },
+    { "address": "74 Ngõ 521 Trương Định, Hoàng Mai", "icon": "https://www.pizzaexpress.vn/wp-content/uploads/2018/05/so_04.png", "mapUrl": "https://maps.google.com/?q=74+Ngõ+521+Trương+Định" }
+  ]
+}

@@ -1,0 +1,83 @@
+@model List<PizzaAdmin.Web.Models.Entities.Page>
+@{ ViewData["Title"] = "Trang tĩnh"; }
+
+<div class="page-header">
+    <div>
+        <h2>Quản lý Trang</h2>
+        <p class="text-muted text-sm">@(ViewBag.TotalItems ?? Model.Count) trang</p>
+    </div>
+    <a href="/admin/pages/create" class="btn btn-primary"><span class="material-symbols-outlined">add</span> Tạo trang mới</a>
+</div>
+
+<!-- Search Filter -->
+<div class="card mb-3">
+    <div class="card-body" style="padding:0.75rem 1.25rem">
+        <form method="get" class="d-flex gap-2 align-center" style="flex-wrap:wrap">
+            <input name="q" value="@ViewBag.Search" class="form-control" style="width:auto;min-width:260px" placeholder="Tìm kiếm trang..." />
+            <button type="submit" class="btn btn-secondary"><span class="material-symbols-outlined">search</span> Tìm</button>
+            @if (!string.IsNullOrEmpty(ViewBag.Search))
+            {
+                <a href="/admin/pages" class="btn btn-ghost btn-sm">Xóa lọc</a>
+            }
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="table-responsive">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Tiêu đề</th>
+                    <th>Slug</th>
+                    <th>Trạng thái</th>
+                    <th>Cập nhật</th>
+                    <th class="text-right">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td class="fw-500">@p.Title</td>
+                    <td class="text-muted text-sm">/@p.Slug</td>
+                    <td>
+                        @if (p.IsPublished) { <span class="badge badge-success">Đã xuất bản</span> }
+                        else { <span class="badge badge-warning">Bản nháp</span> }
+                    </td>
+                    <td class="text-muted text-sm">@((p.UpdatedAt ?? p.CreatedAt).ToString("dd/MM/yyyy"))</td>
+                    <td class="text-right">
+                        <div class="actions">
+                            <a href="/admin/pages/edit/@p.Id" class="btn btn-ghost btn-sm"><span class="material-symbols-outlined">edit</span></a>
+                            <form id="del-page-@p.Id" method="post" asp-action="Delete" asp-route-id="@p.Id" style="display:inline">
+                                @Html.AntiForgeryToken()
+                            </form>
+                            <button class="btn btn-ghost btn-sm text-error" onclick="confirmDelete('del-page-@p.Id','@p.Title')"><span class="material-symbols-outlined">delete</span></button>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <span class="material-symbols-outlined">description</span>
+            <p>Chưa có trang nào</p>
+            <a href="/admin/pages/create" class="btn btn-primary btn-sm mt-1">Tạo trang đầu tiên</a>
+        </div>
+    }
+</div>
+
+@if (ViewBag.TotalPages > 1)
+{
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="@(ViewBag.Page == i ? "active" : "")">
+                <a href="?q=@ViewBag.Search&page=@i">@i</a>
+            </li>
+        }
+    </ul>
+}

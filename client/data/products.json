@@ -1,0 +1,845 @@
+{
+  "categories": [
+    {
+      "slug": "pizza",
+      "name": "Pizza",
+      "products": [
+        {
+          "id": 136,
+          "name": "P1. Beefy Pizza",
+          "description": "Thịt bò xay, ngô, sốt BBQ, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P1-260x204.jpg",
+          "imageFull": "/wp-content/uploads/2018/06/P1-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 395,
+          "name": "P2. Hawaii Pizza",
+          "description": "Jam bông, dứa, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P2-260x204.jpg",
+          "imageFull": "/wp-content/uploads/2018/06/P2-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 390,
+          "name": "P3. Salami Pizza",
+          "description": "Xúc xích Salami, hành tây, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P3-260x204.jpg",
+          "imageFull": "/wp-content/uploads/2018/06/P3-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 120000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 150000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 180000
+            }
+          ]
+        },
+        {
+          "id": 385,
+          "name": "P4. Chorizo Pizza",
+          "description": "Xúc xích Tây Ban Nha, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P4-1-260x204.jpg",
+          "imageFull": "/wp-content/uploads/2018/06/P4-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 380,
+          "name": "P5. Meat Lovers Pizza",
+          "description": "Xúc xích, jam bông, thịt bò xay, sốt BBQ, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P5-260x204.png",
+          "imageFull": "/wp-content/uploads/2018/06/P5-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 110000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 140000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 170000
+            }
+          ]
+        },
+        {
+          "id": 375,
+          "name": "P6. BBQ Chicken Pizza",
+          "description": "Gà, hành tây, sốt BBQ, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P6-260x204.png",
+          "imageFull": "/wp-content/uploads/2018/06/P6-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 371,
+          "name": "P7. Smoked Chicken Pizza",
+          "description": "Gà hun khói, hành tây, ớt chuông, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P7-260x204.png",
+          "imageFull": "/wp-content/uploads/2018/06/P7-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 367,
+          "name": "P8. Mexican Pizza",
+          "description": "Thịt bò xay, ớt chuông, hành tây, ngô, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P8-260x204.png",
+          "imageFull": "/wp-content/uploads/2018/06/P8-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 363,
+          "name": "P9. Veggie Pizza",
+          "description": "Ớt chuông, nấm, hành tây, cà chua, ô liu, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P9-260x204.png",
+          "imageFull": "/wp-content/uploads/2018/06/P9-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 359,
+          "name": "P10. Margherita Pizza",
+          "description": "Cà chua, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P10-260x204.png",
+          "imageFull": "/wp-content/uploads/2018/06/P10-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 355,
+          "name": "P11. Michigan Pizza",
+          "description": "Xúc xích, jam bông, nấm, ớt chuông, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P11-260x204.jpg",
+          "imageFull": "/wp-content/uploads/2018/06/P11-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 120000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 150000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 180000
+            }
+          ]
+        },
+        {
+          "id": 351,
+          "name": "P12. Seafood Pizza",
+          "description": "Tôm, mực, cua, hành tây, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P12-260x204.jpg",
+          "imageFull": "/wp-content/uploads/2018/06/P12-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 120000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 150000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 180000
+            }
+          ]
+        },
+        {
+          "id": 87241,
+          "name": "P13. Bacon Pizza",
+          "description": "Thịt xông khói, hành tây, sốt cà chua, pho mai.",
+          "image": "/wp-content/uploads/2019/10/P13-260x204.jpg",
+          "imageFull": "/wp-content/uploads/2018/06/P13-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 118978,
+          "name": "P14. Popcorn Chicken Pizza",
+          "description": "Gà viên chiên, sốt BBQ, pho mai.",
+          "image": "/wp-content/uploads/2025/09/P14-1-260x204.jpg",
+          "imageFull": "/wp-content/uploads/2018/06/P14-2.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 100000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 130000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 160000
+            }
+          ]
+        },
+        {
+          "id": 39809,
+          "name": "C1. Double Cheese (gấp đôi pho mai bánh nhỏ)",
+          "description": "Thêm pho mai cho bánh Size S.",
+          "image": "/wp-content/uploads/2020/05/cheese.png",
+          "imageFull": "/wp-content/uploads/2018/06/double-cheese-s.jpg",
+          "simplePrice": 15000
+        },
+        {
+          "id": 127604,
+          "name": "C2. Double Cheese (gấp đôi pho mai bánh vừa)",
+          "description": "Thêm pho mai cho bánh Size M.",
+          "image": "/wp-content/uploads/2020/05/cheese.png",
+          "imageFull": "/wp-content/uploads/2018/06/double-cheese-m.jpg",
+          "simplePrice": 20000
+        },
+        {
+          "id": 127608,
+          "name": "C3. Double Cheese (gấp đôi pho mai bánh lớn)",
+          "description": "Thêm pho mai cho bánh Size L.",
+          "image": "/wp-content/uploads/2020/05/cheese.png",
+          "imageFull": "/wp-content/uploads/2018/06/double-cheese-l.jpg",
+          "simplePrice": 25000
+        }
+      ]
+    },
+    {
+      "slug": "suon-bbq",
+      "name": "Sườn BBQ",
+      "products": [
+        {
+          "id": 26131,
+          "name": "SN. Sườn nướng BBQ - Size M - 300gr",
+          "description": "Sườn nướng BBQ 300gr.",
+          "image": "/wp-content/uploads/2019/09/suonbbq.png",
+          "imageFull": "/wp-content/uploads/2019/09/suonbbq.png",
+          "simplePrice": 140000,
+          "originalPrice": 159000
+        },
+        {
+          "id": 26125,
+          "name": "ST. Sườn nướng BBQ - Size L - 500gr",
+          "description": "Sườn nướng BBQ 500gr.",
+          "image": "/wp-content/uploads/2019/09/suonbbq.png",
+          "imageFull": "/wp-content/uploads/2019/09/suonbbq.png",
+          "simplePrice": 200000,
+          "originalPrice": 219000
+        }
+      ]
+    },
+    {
+      "slug": "mi-y",
+      "name": "Mì Ý",
+      "products": [
+        {
+          "id": 405,
+          "name": "M1. Spaghetti Bolognese",
+          "description": "Mì Ý sốt bò băm.",
+          "image": "/wp-content/uploads/2018/06/M1-260x204.jpg",
+          "simplePrice": 80000
+        },
+        {
+          "id": 404,
+          "name": "M2. Spaghetti Carbonara",
+          "description": "Mì Ý sốt kem trứng.",
+          "image": "/wp-content/uploads/2018/06/M2-1.jpg",
+          "simplePrice": 80000
+        },
+        {
+          "id": 403,
+          "name": "M3. Spaghetti Smoked Chicken",
+          "description": "Mì Ý gà hun khói.",
+          "image": "/wp-content/uploads/2018/06/M3-1.jpg",
+          "simplePrice": 80000
+        },
+        {
+          "id": 402,
+          "name": "M4. Spaghetti Ratatouille",
+          "description": "Mì Ý rau củ.",
+          "image": "/wp-content/uploads/2018/06/M4-260x204.png",
+          "simplePrice": 80000
+        },
+        {
+          "id": 401,
+          "name": "M5. Spaghetti Seafood",
+          "description": "Mì Ý hải sản.",
+          "image": "/wp-content/uploads/2018/06/M5-260x204.jpg",
+          "simplePrice": 90000
+        },
+        {
+          "id": 399,
+          "name": "M6. Spaghetti Shrimp",
+          "description": "Mì Ý tôm.",
+          "image": "/wp-content/uploads/2018/06/M5-260x204.jpg",
+          "simplePrice": 90000
+        }
+      ]
+    },
+    {
+      "slug": "salad",
+      "name": "Salad",
+      "products": [
+        {
+          "id": 409,
+          "name": "S1. Garden Salad",
+          "description": "Salad rau xanh tươi.",
+          "image": "/wp-content/uploads/2018/06/GardenSalad-260x204.jpg",
+          "simplePrice": 50000
+        },
+        {
+          "id": 408,
+          "name": "S2. Seasonal Salad",
+          "description": "Salad theo mùa.",
+          "image": "/wp-content/uploads/2018/06/S2-260x204.jpg",
+          "simplePrice": 70000
+        }
+      ]
+    },
+    {
+      "slug": "do-uong",
+      "name": "Đồ Uống",
+      "products": [
+        {
+          "id": 414,
+          "name": "U1. Coca Cola 390ml",
+          "description": "Coca Cola lon 390ml.",
+          "image": "/wp-content/uploads/2018/06/coca-390ml-370x330-260x204.jpg",
+          "simplePrice": 15000
+        },
+        {
+          "id": 413,
+          "name": "U2. Coca Cola 1.5l",
+          "description": "Coca Cola chai 1.5 lít.",
+          "image": "/wp-content/uploads/2018/06/Coca-1.5L-260x204.jpg",
+          "simplePrice": 30000
+        }
+      ]
+    },
+    {
+      "slug": "pizza-cap-dong",
+      "name": "Pizza Cấp Đông",
+      "products": [
+        {
+          "id": 27893,
+          "name": "PF1. Beefy Pizza",
+          "description": "Pizza Beefy đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P1-260x204.jpg",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        },
+        {
+          "id": 27991,
+          "name": "PF2. Hawaii Pizza",
+          "description": "Pizza Hawaii đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P2-260x204.jpg",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        },
+        {
+          "id": 27992,
+          "name": "PF3. Salami Pizza",
+          "description": "Pizza Salami đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P3-260x204.jpg",
+          "simplePrice": 80000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 80000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 105000
+            }
+          ]
+        },
+        {
+          "id": 27994,
+          "name": "PF4. Chorizo Pizza",
+          "description": "Pizza Chorizo đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P4-1-260x204.jpg",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        },
+        {
+          "id": 27995,
+          "name": "PF5. Meat Lovers Pizza",
+          "description": "Pizza Meat Lovers đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P5-260x204.png",
+          "simplePrice": 75000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 75000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 100000
+            }
+          ]
+        },
+        {
+          "id": 27996,
+          "name": "PF6. BBQ Chicken Pizza",
+          "description": "Pizza BBQ Chicken đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P6-260x204.png",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        },
+        {
+          "id": 27997,
+          "name": "PF7. Smoked Chicken Pizza",
+          "description": "Pizza Smoked Chicken đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P7-260x204.png",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        },
+        {
+          "id": 27998,
+          "name": "PF8. Mexican Pizza",
+          "description": "Pizza Mexican đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P8-260x204.png",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        },
+        {
+          "id": 27999,
+          "name": "PF9. Veggie Pizza",
+          "description": "Pizza Veggie đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P9-260x204.png",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        },
+        {
+          "id": 28000,
+          "name": "PF10. Margherita Pizza",
+          "description": "Pizza Margherita đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P10-260x204.png",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        },
+        {
+          "id": 28001,
+          "name": "PF11. Michigan Pizza",
+          "description": "Pizza Michigan đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P11-260x204.jpg",
+          "simplePrice": 80000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 80000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 105000
+            }
+          ]
+        },
+        {
+          "id": 28002,
+          "name": "PF12. Seafood Pizza",
+          "description": "Pizza Seafood đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P12-260x204.jpg",
+          "simplePrice": 80000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 80000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 105000
+            }
+          ]
+        },
+        {
+          "id": 28003,
+          "name": "PF13. Bacon Pizza",
+          "description": "Pizza Bacon đông lạnh.",
+          "image": "/wp-content/uploads/2019/10/P13-260x204.jpg",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        },
+        {
+          "id": 118992,
+          "name": "PF14. Popcorn Chicken Pizza",
+          "description": "Pizza Popcorn Chicken đông lạnh.",
+          "image": "/wp-content/uploads/2025/09/P14-1-260x204.jpg",
+          "simplePrice": 65000,
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 65000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 90000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "combo",
+      "name": "Combo",
+      "products": [
+        {
+          "id": 415,
+          "name": "CB1. Combo 01",
+          "description": "1 Pizza + 1 Coca Cola.",
+          "image": "/wp-content/uploads/2018/06/CB1-260x204.png",
+          "simplePrice": 255000
+        },
+        {
+          "id": 425,
+          "name": "CB2. Combo 02",
+          "description": "2 Pizza + 2 Coca Cola.",
+          "image": "/wp-content/uploads/2018/06/CB2-260x204.png",
+          "simplePrice": 440000
+        },
+        {
+          "id": 426,
+          "name": "CB3. Combo 03",
+          "description": "4 Pizza + 4 Coca Cola.",
+          "image": "/wp-content/uploads/2018/06/CB3-260x204.png",
+          "simplePrice": 825000
+        },
+        {
+          "id": 420,
+          "name": "CB4. Combo 04",
+          "description": "1 Pizza + 1 Mì Ý + 1 Salad + 1 Coca Cola.",
+          "image": "/wp-content/uploads/2018/06/CB4-260x204.png",
+          "simplePrice": 365000
+        }
+      ]
+    },
+    {
+      "slug": "khac",
+      "name": "Khác",
+      "products": [
+        {
+          "id": 410,
+          "name": "KV3. Khoai Tây Chiên",
+          "description": "Khoai tây chiên giòn.",
+          "image": "/wp-content/uploads/2018/06/KV3-370x330-260x204.jpg",
+          "simplePrice": 50000
+        },
+        {
+          "id": 105096,
+          "name": "KV4. Khoai Tây Lắc Phomai",
+          "description": "Khoai tây lắc pho mai.",
+          "image": "/wp-content/uploads/2024/12/Kv4.Khoai_tay_pho_mai-260x204.jpg",
+          "simplePrice": 50000
+        },
+        {
+          "id": 5330,
+          "name": "B4. Pho Mai Mozzarella (1kg)",
+          "description": "Pho mai Mozzarella 1kg.",
+          "image": "/wp-content/uploads/2018/06/Phomaisoi.png",
+          "simplePrice": 180000
+        },
+        {
+          "id": 5323,
+          "name": "B1. Đế bánh Pizza",
+          "description": "Đế bánh Pizza.",
+          "image": "/wp-content/uploads/2018/12/pizza-bases.jpg",
+          "variations": [
+            {
+              "size": "S",
+              "diameter": "20cm",
+              "price": 15000
+            },
+            {
+              "size": "M",
+              "diameter": "24cm",
+              "price": 20000
+            },
+            {
+              "size": "L",
+              "diameter": "28cm",
+              "price": 25000
+            }
+          ]
+        },
+        {
+          "id": 111562,
+          "name": "GVC. Gà Viên Chiên",
+          "description": "Gà viên chiên.",
+          "image": "/wp-content/uploads/2025/04/popcorn-chicken_2_600x600-260x204.png",
+          "simplePrice": 70000
+        }
+      ]
+    }
+  ]
+}

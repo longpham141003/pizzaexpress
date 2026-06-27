@@ -1,0 +1,49 @@
+@model Category
+@{ ViewData["Title"] = Model.Id == 0 ? "Thêm danh mục" : "Sửa danh mục"; }
+
+<div class="page-header">
+    <h2>@ViewData["Title"]</h2>
+    <a href="/admin/categories" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a>
+</div>
+
+<div class="card" style="max-width:600px">
+    <div class="card-body">
+        <form method="post" asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" style="@(ViewData.ModelState.IsValid ? "display:none" : "")"></div>
+
+            <div class="form-group">
+                <label asp-for="Name">Tên danh mục</label>
+                <input asp-for="Name" class="form-control" placeholder="VD: Pizza, Mì Ý..." />
+                <span asp-validation-for="Name" class="field-validation-error"></span>
+                <span class="form-hint">ℹ️ Tên hiển thị trên website và trong admin</span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Slug">Đường dẫn (slug)</label>
+                <input asp-for="Slug" class="form-control" placeholder="pizza, mi-y..." />
+                <span class="form-hint">ℹ️ Để trống sẽ tự tạo từ tên</span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description">Mô tả</label>
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="SortOrder">Thứ tự hiển thị</label>
+                    <input asp-for="SortOrder" type="number" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Trạng thái</label>
+                    <label class="form-check" style="margin-top:0.5rem">
+                        <input asp-for="IsActive" type="checkbox" />
+                        <span>Hiển thị trên website</span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary"><span class="material-symbols-outlined">save</span> Lưu danh mục</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+@model List<MediaItem>
+@{ ViewData["Title"] = "Thư viện Media"; }
+
+<div class="page-header">
+    <h2>Thư viện Media (@Model.Count file — @FormatSize((long)ViewBag.TotalSize))</h2>
+    <div class="d-flex gap-2">
+        <a href="/admin/media?type=image" class="btn btn-sm @(ViewBag.FilterType == "image" ? "btn-primary" : "btn-secondary")">🖼️ Ảnh</a>
+        <a href="/admin/media" class="btn btn-sm @(ViewBag.FilterType == null ? "btn-primary" : "btn-secondary")">Tất cả</a>
+    </div>
+</div>
+
+<!-- Upload Zone -->
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="post" asp-action="Upload" enctype="multipart/form-data" class="d-flex gap-3 align-center" style="flex-wrap:wrap">
+            <div class="img-upload-zone" style="flex:1;min-width:300px" onclick="this.querySelector('input').click()">
+                <span class="material-symbols-outlined">cloud_upload</span>
+                <p class="text-sm text-muted">Kéo thả hoặc click để chọn file (tối đa 5MB/file)</p>
+                <input type="file" name="files" multiple accept="image/*" style="display:none" onchange="this.form.submit()" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Media Grid -->
+<div class="card">
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem">
+            @foreach (var m in Model)
+            {
+                <div style="background:var(--surface-container-low);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(145,180,228,0.15)">
+                    @if (m.MimeType?.StartsWith("image") == true)
+                    {
+                        <img src="@m.RelativePath" alt="@m.FileName" style="width:100%;height:120px;object-fit:cover" />
+                    }
+                    else
+                    {
+                        <div style="width:100%;height:120px;display:flex;align-items:center;justify-content:center;background:var(--surface-container)">
+                            <span class="material-symbols-outlined" style="font-size:36px;color:var(--on-surface-variant)">description</span>
+                        </div>
+                    }
+                    <div style="padding:0.5rem">
+                        <p class="text-xs fw-500" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="@m.FileName">@m.FileName</p>
+                        <div class="d-flex justify-between align-center" style="margin-top:4px">
+                            <span class="text-xs text-muted">@FormatSize(m.FileSize)</span>
+                            <div class="d-flex gap-1">
+                                <button class="btn-icon" style="width:28px;height:28px" title="Copy URL" onclick="navigator.clipboard.writeText(window.location.origin+'@m.RelativePath');showToast&&showToast('Đã copy URL!')">
+                                    <span class="material-symbols-outlined" style="font-size:16px">content_copy</span>
+                                </button>
+                                <form id="del-media-@m.Id" method="post" asp-action="Delete" asp-route-id="@m.Id" style="display:inline"></form>
+                                <button class="btn-icon" style="width:28px;height:28px;color:var(--error)" onclick="confirmDelete('del-media-@m.Id','@m.FileName')">
+                                    <span class="material-symbols-outlined" style="font-size:16px">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <span class="material-symbols-outlined">perm_media</span>
+                <p>Chưa có file nào trong thư viện</p>
+            </div>
+        }
+    </div>
+</div>
+
+@functions {
+    static string FormatSize(long bytes)
+    {
+        if (bytes < 1024) return $"{bytes} B";
+        if (bytes < 1024 * 1024) return $"{bytes / 1024.0:F1} KB";
+        return $"{bytes / (1024.0 * 1024.0):F1} MB";
+    }
+}

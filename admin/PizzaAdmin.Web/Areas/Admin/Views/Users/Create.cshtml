@@ -1,0 +1,35 @@
+@model CreateUserViewModel
+@{ ViewData["Title"] = "Thêm tài khoản admin"; }
+
+<div class="page-header">
+    <h2>Thêm tài khoản admin</h2>
+    <a href="/admin/users" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a>
+</div>
+
+<div class="card" style="max-width:500px">
+    <div class="card-body">
+        <form method="post" asp-action="Create">
+            <div asp-validation-summary="All" class="alert alert-danger" style="@(ViewData.ModelState.IsValid ? "display:none" : "")"></div>
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="user@pizzaexpress.vn" />
+                <span asp-validation-for="Email" class="field-validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Mật khẩu</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="field-validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Xác nhận mật khẩu</label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="field-validation-error"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary"><span class="material-symbols-outlined">person_add</span> Tạo tài khoản</button>
+        </form>
+    </div>
+</div>

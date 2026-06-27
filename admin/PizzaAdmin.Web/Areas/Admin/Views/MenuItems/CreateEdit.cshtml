@@ -1,0 +1,14 @@
+@model MenuItem
+@{ ViewData["Title"] = Model.Id == 0 ? "Thêm mục menu" : "Sửa mục menu"; }
+<div class="page-header"><h2>@ViewData["Title"]</h2><a href="/admin/menuitems" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a></div>
+<div class="card" style="max-width:500px"><div class="card-body">
+<form method="post" asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id">
+<div class="form-group"><label asp-for="Label">Nhãn hiển thị</label><input asp-for="Label" class="form-control" placeholder="VD: Trang chủ, Thực đơn..." /></div>
+<div class="form-group"><label asp-for="Url">Đường dẫn URL</label><input asp-for="Url" class="form-control" placeholder="/thuc-don hoặc https://..." /></div>
+<div class="form-group"><label class="form-check"><input asp-for="OpenNewTab" type="checkbox" /><span>Mở ở tab mới</span></label></div>
+<div class="form-row">
+<div class="form-group"><label asp-for="SortOrder">Thứ tự</label><input asp-for="SortOrder" type="number" class="form-control" /></div>
+<div class="form-group"><label>Trạng thái</label><label class="form-check" style="margin-top:0.5rem"><input asp-for="IsActive" type="checkbox" /><span>Hiển thị</span></label></div>
+</div>
+<button type="submit" class="btn btn-primary"><span class="material-symbols-outlined">save</span> Lưu</button>
+</form></div></div>

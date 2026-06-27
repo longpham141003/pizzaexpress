@@ -1,0 +1,147 @@
+@using PizzaAdmin.Web.Models.Entities
+@{
+    ViewData["Title"] = "Bảng điều khiển";
+    var products = (List<Product>)ViewBag.RecentProducts;
+    var logs = (List<AuditLog>)ViewBag.RecentLogs;
+    var contacts = (List<Contact>?)ViewBag.RecentContacts ?? new();
+    int unreadContacts = ViewBag.UnreadContactCount ?? 0;
+}
+
+<div class="page-header">
+    <div>
+        <h2>Chào mừng trở lại, @User.Identity?.Name!</h2>
+        <p class="text-muted text-sm">Hôm nay là @DateTime.Now.ToString("dddd, dd MMMM yyyy", new System.Globalization.CultureInfo("vi-VN"))</p>
+    </div>
+    <a href="/" target="_blank" class="btn btn-secondary"><span class="material-symbols-outlined">open_in_new</span> Xem website</a>
+</div>
+
+<!-- Quick Actions — đa màu giống DH Marketing -->
+<div class="quick-actions-grid mb-2">
+    <a href="/admin/products/create" class="quick-action-card" style="--qa-bg:#fef2f2;--qa-color:#c41230"><span class="material-symbols-outlined">add_circle</span> Thêm sản phẩm</a>
+    <a href="/admin/posts/create" class="quick-action-card" style="--qa-bg:#eff6ff;--qa-color:#2563eb"><span class="material-symbols-outlined">edit_note</span> Viết bài mới</a>
+    <a href="/admin/pages/create" class="quick-action-card" style="--qa-bg:#f0fdf4;--qa-color:#059669"><span class="material-symbols-outlined">note_add</span> Tạo trang</a>
+    <a href="/admin/media" class="quick-action-card" style="--qa-bg:#fffbeb;--qa-color:#d97706"><span class="material-symbols-outlined">cloud_upload</span> Tải ảnh lên</a>
+    <a href="/admin/contacts" class="quick-action-card" style="--qa-bg:#faf5ff;--qa-color:#7c3aed"><span class="material-symbols-outlined">mail</span> Xem liên hệ @if(unreadContacts > 0){<span class="badge badge-danger" style="font-size:.65rem">@unreadContacts</span>}</a>
+    <a href="/admin/settings" class="quick-action-card" style="--qa-bg:#f5f5f4;--qa-color:#57534e"><span class="material-symbols-outlined">tune</span> Cài đặt</a>
+</div>
+
+<!-- Stat Cards — clickable, 6 cái, mỗi cái màu riêng -->
+<div class="stat-grid">
+    <a href="/admin/products" class="stat-card">
+        <div><p class="stat-label">Sản phẩm</p><h3 class="stat-value">@ViewBag.ProductCount</h3></div>
+        <div class="stat-icon red"><span class="material-symbols-outlined">local_pizza</span></div>
+    </a>
+    <a href="/admin/categories" class="stat-card">
+        <div><p class="stat-label">Danh mục</p><h3 class="stat-value">@ViewBag.CategoryCount</h3></div>
+        <div class="stat-icon blue"><span class="material-symbols-outlined">folder_open</span></div>
+    </a>
+    <a href="/admin/posts" class="stat-card">
+        <div><p class="stat-label">Bài viết</p><h3 class="stat-value">@ViewBag.PostCount</h3></div>
+        <div class="stat-icon" style="background:rgba(124,58,237,0.08);color:#7c3aed"><span class="material-symbols-outlined">article</span></div>
+    </a>
+    <a href="/admin/contacts" class="stat-card">
+        <div><p class="stat-label">Liên hệ</p><h3 class="stat-value">@ViewBag.ContactCount</h3></div>
+        <div class="stat-icon amber"><span class="material-symbols-outlined">contact_mail</span></div>
+    </a>
+    <a href="/admin/pages" class="stat-card">
+        <div><p class="stat-label">Trang</p><h3 class="stat-value">@ViewBag.PageCount</h3></div>
+        <div class="stat-icon green"><span class="material-symbols-outlined">description</span></div>
+    </a>
+    <a href="/admin/media" class="stat-card">
+        <div><p class="stat-label">Thư viện ảnh</p><h3 class="stat-value">@ViewBag.MediaCount</h3></div>
+        <div class="stat-icon" style="background:rgba(236,72,153,0.08);color:#ec4899"><span class="material-symbols-outlined">photo_library</span></div>
+    </a>
+</div>
+
+<!-- 3 Columns: Products | Contacts | Activity -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem">
+    <!-- Recent Products -->
+    <div class="card">
+        <div class="card-header">
+            <h3>Sản phẩm gần đây</h3>
+            <a href="/admin/products" class="text-sm text-primary">Xem tất cả</a>
+        </div>
+        <div class="table-responsive">
+            <table class="admin-table">
+                <thead><tr><th>Ảnh</th><th>Tên</th><th>Danh mục</th></tr></thead>
+                <tbody>
+                @foreach (var p in products)
+                {
+                    <tr>
+                        <td>
+                            @if (!string.IsNullOrEmpty(p.ImagePath))
+                            {
+                                <img src="@(p.ImagePath.StartsWith("/") ? p.ImagePath : "/" + p.ImagePath)" class="thumb" alt="@p.Name" />
+                            }
+                        </td>
+                        <td class="fw-500">@p.Name</td>
+                        <td class="text-muted text-sm">@(p.Category?.Name ?? "—")</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Recent Contacts -->
+    <div class="card">
+        <div class="card-header">
+            <h3>Liên hệ chưa đọc</h3>
+            <a href="/admin/contacts?unreadOnly=true" class="text-sm text-primary">Xem tất cả</a>
+        </div>
+        <div class="card-body" style="padding:0">
+            @if (contacts.Any())
+            {
+                @foreach (var c in contacts)
+                {
+                    <a href="/admin/contacts/details/@c.Id" style="display:block;padding:.75rem 1.25rem;border-bottom:1px solid var(--border-subtle);text-decoration:none;color:inherit;transition:background var(--dur) var(--ease)">
+                        <div class="d-flex justify-between align-center">
+                            <span class="fw-600" style="color:var(--ink)">@c.Name</span>
+                            <span class="text-xs text-muted">@c.CreatedAt.ToString("dd/MM HH:mm")</span>
+                        </div>
+                        @if (c.Message != null)
+                        {
+                            <p class="text-muted text-sm mt-1" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px;margin:2px 0 0">@c.Message</p>
+                        }
+                    </a>
+                }
+            }
+            else
+            {
+                <div class="empty-state" style="padding:2rem">
+                    <span class="material-symbols-outlined">mark_email_read</span>
+                    <p class="text-sm">Không có liên hệ chưa đọc</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Activity Timeline -->
+    <div class="card">
+        <div class="card-header">
+            <h3>Hoạt động gần đây</h3>
+            <a href="/admin/auditlogs" class="text-sm text-primary">Xem tất cả</a>
+        </div>
+        <div class="card-body">
+            @if (logs.Any())
+            {
+                <div class="timeline">
+                @foreach (var log in logs)
+                {
+                    <div class="timeline-item">
+                        <div class="timeline-title">@log.Action @(!string.IsNullOrEmpty(log.Detail) ? $"— {log.Detail}" : "")</div>
+                        <div class="timeline-meta">@log.UserName · @log.CreatedAt.ToString("dd/MM HH:mm")</div>
+                    </div>
+                }
+                </div>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <span class="material-symbols-outlined">history</span>
+                    <p>Chưa có hoạt động nào</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

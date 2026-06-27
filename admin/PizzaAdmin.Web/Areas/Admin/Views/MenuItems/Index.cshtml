@@ -1,0 +1,14 @@
+@model List<MenuItem>
+@{ ViewData["Title"] = "Quản lý Menu"; }
+<div class="page-header"><h2>Menu điều hướng (@Model.Count)</h2><a href="/admin/menuitems/create" class="btn btn-primary"><span class="material-symbols-outlined">add</span> Thêm mục menu</a></div>
+<div class="card"><div class="table-responsive"><table class="admin-table">
+<thead><tr><th>Nhãn</th><th>URL</th><th>Tab mới</th><th>TT</th><th>Trạng thái</th><th class="text-right">Thao tác</th></tr></thead>
+<tbody>
+@foreach (var m in Model){<tr><td class="fw-500">@m.Label</td><td class="text-muted text-sm">@m.Url</td>
+<td>@(m.OpenNewTab ? "✓" : "")</td><td>@m.SortOrder</td>
+<td>@(m.IsActive ? Html.Raw("<span class='badge badge-success'>Hiện</span>") : Html.Raw("<span class='badge badge-warning'>Ẩn</span>"))</td>
+<td class="actions"><a href="/admin/menuitems/edit/@m.Id" class="btn btn-sm btn-secondary"><span class="material-symbols-outlined">edit</span></a>
+<form id="del-mi-@m.Id" method="post" asp-action="Delete" asp-route-id="@m.Id" style="display:inline"></form>
+<button class="btn btn-sm btn-danger" onclick="confirmDelete('del-mi-@m.Id','@m.Label')"><span class="material-symbols-outlined">delete</span></button></td></tr>}
+@if (!Model.Any()){<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">menu_book</span><p>Chưa có mục menu nào</p></div></td></tr>}
+</tbody></table></div></div>

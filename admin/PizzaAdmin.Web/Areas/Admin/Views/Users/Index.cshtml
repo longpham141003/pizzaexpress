@@ -1,0 +1,59 @@
+@model List<UserViewModel>
+@{ ViewData["Title"] = "Quản lý Người dùng"; }
+
+<div class="page-header">
+    <h2>Quản lý Người dùng (@Model.Count)</h2>
+    <a href="/admin/users/create" class="btn btn-primary"><span class="material-symbols-outlined">person_add</span> Thêm user</a>
+</div>
+
+<div class="card">
+    <div class="table-responsive">
+        <table class="admin-table">
+            <thead><tr><th>Email</th><th>Role</th><th>Trạng thái</th><th class="text-right">Thao tác</th></tr></thead>
+            <tbody>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td class="fw-500">@u.Email</td>
+                    <td><span class="badge badge-info">@u.Roles</span></td>
+                    <td>
+                        @if (u.IsLocked)
+                        { <span class="badge badge-danger">🔒 Đã khóa</span> }
+                        else
+                        { <span class="badge badge-success">✅ Hoạt động</span> }
+                    </td>
+                    <td class="actions">
+                        @if (u.IsLocked)
+                        {
+                            <form method="post" asp-action="Unlock" asp-route-id="@u.Id" style="display:inline">
+                                <button class="btn btn-sm btn-secondary" title="Mở khóa"><span class="material-symbols-outlined">lock_open</span></button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form method="post" asp-action="Lock" asp-route-id="@u.Id" style="display:inline">
+                                <button class="btn btn-sm btn-danger" title="Khóa"><span class="material-symbols-outlined">lock</span></button>
+                            </form>
+                        }
+                        <!-- Reset Password Modal Trigger -->
+                        <button class="btn btn-sm btn-secondary" title="Reset mật khẩu" onclick="document.getElementById('resetForm-@u.Id').style.display='flex'">
+                            <span class="material-symbols-outlined">key</span>
+                        </button>
+                    </td>
+                </tr>
+                <!-- Inline Reset Password Form -->
+                <tr id="resetForm-@u.Id" style="display:none;background:var(--surface-container-low)">
+                    <td colspan="4">
+                        <form method="post" asp-action="ResetPassword" asp-route-id="@u.Id" class="d-flex gap-3 align-center" style="padding:0.5rem 0">
+                            <span class="text-sm">Reset mật khẩu cho <strong>@u.Email</strong>:</span>
+                            <input name="newPassword" type="password" class="form-control" style="width:200px" placeholder="Mật khẩu mới" required minlength="6" />
+                            <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
+                            <button type="button" class="btn btn-sm btn-secondary" onclick="this.closest('tr').style.display='none'">Hủy</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

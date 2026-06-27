@@ -1,0 +1,149 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString()?.ToLower() ?? "";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "Admin") — Pizza Express</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+</head>
+<body>
+<div class="admin-shell">
+    <!-- Sidebar -->
+    <nav class="admin-sidebar" id="adminSidebar" aria-label="Menu quản trị">
+        <div class="sidebar-brand">
+            <div class="sidebar-brand-icon">
+                <span class="material-symbols-outlined">local_pizza</span>
+            </div>
+            <div>
+                <h1>Pizza Express</h1>
+                <p>Quản trị</p>
+            </div>
+        </div>
+
+        <ul class="sidebar-nav">
+            <li class="sidebar-section">Tổng quan</li>
+            <li><a href="/admin" class="@(controller == "dashboard" ? "active" : "")" aria-current="@(controller == "dashboard" ? "page" : "false")">
+                <span class="material-symbols-outlined">space_dashboard</span> Bảng điều khiển</a></li>
+
+            <li class="sidebar-section">Nội dung</li>
+            <li><a href="/admin/products" class="@(controller == "products" ? "active" : "")">
+                <span class="material-symbols-outlined">inventory_2</span> Sản phẩm</a></li>
+            <li><a href="/admin/categories" class="@(controller == "categories" ? "active" : "")">
+                <span class="material-symbols-outlined">category</span> Danh mục</a></li>
+            <li><a href="/admin/posts" class="@(controller == "posts" ? "active" : "")">
+                <span class="material-symbols-outlined">article</span> Bài viết</a></li>
+            <li><a href="/admin/pages" class="@(controller == "pages" ? "active" : "")">
+                <span class="material-symbols-outlined">description</span> Trang tĩnh</a></li>
+
+            <li class="sidebar-section">Trang chủ</li>
+            <li><a href="/admin/banners" class="@(controller == "banners" ? "active" : "")">
+                <span class="material-symbols-outlined">image</span> Banner / Slide</a></li>
+            <li><a href="/admin/features" class="@(controller == "features" ? "active" : "")">
+                <span class="material-symbols-outlined">auto_awesome</span> Điểm nổi bật</a></li>
+            <li><a href="/admin/reviews" class="@(controller == "reviews" ? "active" : "")">
+                <span class="material-symbols-outlined">star</span> Đánh giá KH</a></li>
+            <li><a href="/admin/locations" class="@(controller == "locations" ? "active" : "")">
+                <span class="material-symbols-outlined">location_on</span> Chi nhánh</a></li>
+
+            <li class="sidebar-section">Quản lý</li>
+            <li><a href="/admin/contacts" class="@(controller == "contacts" ? "active" : "")">
+                <span class="material-symbols-outlined">mail</span> Liên hệ</a></li>
+            <li><a href="/admin/menuitems" class="@(controller == "menuitems" ? "active" : "")">
+                <span class="material-symbols-outlined">menu_book</span> Menu website</a></li>
+            <li><a href="/admin/media" class="@(controller == "media" ? "active" : "")">
+                <span class="material-symbols-outlined">perm_media</span> Thư viện ảnh</a></li>
+
+            <li class="sidebar-section">Hệ thống</li>
+            <li><a href="/admin/settings" class="@(controller == "settings" ? "active" : "")">
+                <span class="material-symbols-outlined">settings</span> Cài đặt</a></li>
+            <li><a href="/admin/users" class="@(controller == "users" ? "active" : "")">
+                <span class="material-symbols-outlined">group</span> Người dùng</a></li>
+            <li><a href="/admin/account/changepassword" class="@(controller == "account" ? "active" : "")">
+                <span class="material-symbols-outlined">lock</span> Đổi mật khẩu</a></li>
+            <li><a href="/admin/auditlogs" class="@(controller == "auditlogs" ? "active" : "")">
+                <span class="material-symbols-outlined">history</span> Nhật ký</a></li>
+            <li><a href="/admin/backup" class="@(controller == "backup" ? "active" : "")">
+                <span class="material-symbols-outlined">backup</span> Sao lưu</a></li>
+        </ul>
+        <div class="sidebar-footer">© 2026 Pizza Express</div>
+    </nav>
+
+    <!-- Sidebar Overlay (mobile) -->
+    <div id="sidebarOverlay"></div>
+
+    <!-- Main wrapper -->
+    <div class="admin-main-wrapper">
+        <!-- Topbar -->
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <button class="btn-icon sidebar-toggle" aria-label="Mở menu" onclick="document.getElementById('adminSidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('show')">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+            <div class="topbar-right">
+                <a href="http://localhost:3000" target="_blank" class="btn btn-sm btn-secondary">
+                    <span class="material-symbols-outlined">open_in_new</span> Xem website
+                </a>
+                <div class="topbar-divider"></div>
+                <div class="topbar-user">
+                    <span class="text-sm fw-500">@User.Identity?.Name</span>
+                    <a asp-area="Admin" asp-controller="Account" asp-action="Logout">Đăng xuất</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            @if (TempData["Success"] != null)
+            {
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        showToast(@Html.Raw(Json.Serialize(TempData["Success"])), 'success');
+                    });
+                </script>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        showToast(@Html.Raw(Json.Serialize(TempData["Error"])), 'error');
+                    });
+                </script>
+            }
+
+            @RenderBody()
+        </main>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-backdrop" id="deleteModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+        <div class="modal-header">
+            <h3 id="deleteModalTitle">Xác nhận xóa</h3>
+            <button class="btn-icon" onclick="closeModal('deleteModal')" aria-label="Đóng">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Bạn có chắc muốn xóa <strong id="deleteItemName"></strong>?</p>
+            <p class="text-muted text-sm mt-1">Hành động này không thể hoàn tác.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal('deleteModal')">Hủy</button>
+            <button class="btn btn-danger" id="confirmDeleteBtn">Xóa</button>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/admin.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

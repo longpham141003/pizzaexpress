@@ -1,0 +1,82 @@
+@model List<PizzaAdmin.Web.Models.Entities.Contact>
+@{
+    ViewData["Title"] = "Liên hệ";
+    var unread = (int)ViewBag.UnreadCount;
+}
+
+<div class="page-header">
+    <div>
+        <h2>Liên hệ từ khách hàng</h2>
+        <p class="text-muted text-sm">@(ViewBag.TotalItems ?? Model.Count) tin nhắn · @unread chưa đọc</p>
+    </div>
+    <div class="page-header-actions">
+        <a href="/admin/contacts?unreadOnly=@(ViewBag.Filter == true ? "false" : "true")" class="btn btn-secondary">
+            <span class="material-symbols-outlined">filter_list</span>
+            @(ViewBag.Filter == true ? "Tất cả" : "Chưa đọc")
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="table-responsive">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Điện thoại</th>
+                    <th>Nội dung</th>
+                    <th>Ngày gửi</th>
+                    <th class="text-right">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var c in Model)
+            {
+                <tr style="@(!c.IsRead ? "font-weight:500;background:var(--brand-subtle);" : "")">
+                    <td>
+                        @if (!c.IsRead)
+                        {
+                            <span class="badge badge-danger">Mới</span>
+                        }
+                    </td>
+                    <td class="fw-500">@c.Name</td>
+                    <td class="text-muted">@(c.Email ?? "—")</td>
+                    <td class="text-muted">@(c.Phone ?? "—")</td>
+                    <td class="text-muted" style="max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">@(c.Message ?? "—")</td>
+                    <td class="text-muted text-sm">@c.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td class="text-right">
+                        <div class="actions">
+                            <a href="/admin/contacts/details/@c.Id" class="btn btn-ghost btn-sm"><span class="material-symbols-outlined">visibility</span></a>
+                            <form id="del-contact-@c.Id" method="post" asp-action="Delete" asp-route-id="@c.Id" style="display:inline">
+                                @Html.AntiForgeryToken()
+                            </form>
+                            <button class="btn btn-ghost btn-sm text-error" onclick="confirmDelete('del-contact-@c.Id','@c.Name')"><span class="material-symbols-outlined">delete</span></button>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <span class="material-symbols-outlined">mail</span>
+            <p>Chưa có liên hệ nào</p>
+        </div>
+    }
+</div>
+
+@if (ViewBag.TotalPages > 1)
+{
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="@(ViewBag.Page == i ? "active" : "")">
+                <a href="?unreadOnly=@(ViewBag.Filter == true ? "true" : "false")&page=@i">@i</a>
+            </li>
+        }
+    </ul>
+}

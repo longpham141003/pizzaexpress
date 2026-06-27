@@ -1,0 +1,64 @@
+@model List<AuditLog>
+@{ ViewData["Title"] = "Nhật ký hoạt động"; var entities = (List<string?>)ViewBag.EntityTypes; var users = (List<string>)ViewBag.Users; }
+
+<div class="page-header">
+    <h2>Nhật ký hoạt động</h2>
+</div>
+
+<!-- Filters -->
+<div class="card mb-3">
+    <div class="card-body" style="padding:0.75rem 1.25rem">
+        <form method="get" class="d-flex gap-3 align-center" style="flex-wrap:wrap">
+            <select name="entity" class="form-control" style="width:auto;min-width:160px">
+                <option value="">Tất cả đối tượng</option>
+                @foreach (var e in entities) { <option value="@e" selected="@(ViewBag.FilterEntity == e)">@e</option> }
+            </select>
+            <select name="user" class="form-control" style="width:auto;min-width:180px">
+                <option value="">Tất cả người dùng</option>
+                @foreach (var u in users) { <option value="@u" selected="@(ViewBag.FilterUser == u)">@u</option> }
+            </select>
+            <button type="submit" class="btn btn-secondary"><span class="material-symbols-outlined">filter_list</span> Lọc</button>
+            <a href="/admin/auditlogs" class="btn btn-sm btn-secondary">Xóa bộ lọc</a>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="table-responsive">
+        <table class="admin-table">
+            <thead><tr><th>Thời gian</th><th>Người dùng</th><th>Hành động</th><th>Đối tượng</th><th>ID</th><th>Chi tiết</th></tr></thead>
+            <tbody>
+            @foreach (var l in Model)
+            {
+                <tr>
+                    <td class="text-sm text-muted" style="white-space:nowrap">@l.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")</td>
+                    <td class="fw-500">@l.UserName</td>
+                    <td>@l.Action</td>
+                    <td><span class="badge badge-info">@l.EntityType</span></td>
+                    <td class="text-muted text-sm">@l.EntityId</td>
+                    <td class="text-sm">@l.Detail</td>
+                </tr>
+            }
+            @if (!Model.Any())
+            {
+                <tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">history</span><p>Chưa có hoạt động nào</p></div></td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    @if ((int)ViewBag.TotalPages > 1)
+    {
+        <div class="card-footer">
+            <div class="pagination">
+                @for (int i = 1; i <= (int)ViewBag.TotalPages; i++)
+                {
+                    if (i == (int)ViewBag.Page)
+                    { <span class="active"><span>@i</span></span> }
+                    else
+                    { <a href="/admin/auditlogs?page=@i&entity=@ViewBag.FilterEntity&user=@ViewBag.FilterUser">@i</a> }
+                }
+            </div>
+        </div>
+    }
+</div>

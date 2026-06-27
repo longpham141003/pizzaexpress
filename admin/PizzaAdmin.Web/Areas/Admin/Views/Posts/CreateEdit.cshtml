@@ -1,0 +1,87 @@
+@model PizzaAdmin.Web.Models.Entities.Post
+@{
+    var isEdit = Model.Id > 0;
+    ViewData["Title"] = isEdit ? "Sửa bài viết" : "Viết bài mới";
+}
+
+<div class="page-header">
+    <h2>@ViewData["Title"]</h2>
+    <a href="/admin/posts" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a>
+</div>
+
+<form method="post" enctype="multipart/form-data" asp-action="@(isEdit ? "Edit" : "Create")" asp-route-id="@(isEdit ? Model.Id : null)">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+    <div class="form-row" style="grid-template-columns:1fr 320px;gap:1.5rem">
+        <div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Title" class="form-label">Tiêu đề</label>
+                        <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề bài viết..." />
+                        <span asp-validation-for="Title" class="field-validation-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Slug" class="form-label">Đường dẫn (slug)</label>
+                        <input asp-for="Slug" class="form-control" placeholder="tu-dong-tao-tu-tieu-de" />
+                        <span class="form-hint">Để trống sẽ tự động tạo từ tiêu đề</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Summary" class="form-label">Tóm tắt</label>
+                        <textarea asp-for="Summary" class="form-control" rows="2" placeholder="Mô tả ngắn cho bài viết..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Content" class="form-label">Nội dung</label>
+                        <textarea asp-for="Content" class="form-control tinymce-editor" rows="12"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card mb-2">
+                <div class="card-header"><h3>Xuất bản</h3></div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input asp-for="IsPublished" type="checkbox" />
+                        <label asp-for="IsPublished">Xuất bản ngay</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3>Ảnh đại diện</h3></div>
+                <div class="card-body">
+                    @if (Model.ImagePath != null)
+                    {
+                        <img src="/@Model.ImagePath" class="img-preview mb-1" alt="Ảnh hiện tại" />
+                    }
+                    <input type="file" name="imageFile" accept="image/*" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary btn-lg">
+            <span class="material-symbols-outlined">save</span>
+            @(isEdit ? "Cập nhật" : "Xuất bản")
+        </button>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 400,
+            menubar: false,
+            plugins: 'lists link image table code fullscreen',
+            toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link image table | code fullscreen',
+            content_style: 'body { font-family: Inter, sans-serif; font-size: 14px; }',
+            branding: false,
+            promotion: false
+        });
+        initAutoSlug('Title', 'Slug');
+    </script>
+}

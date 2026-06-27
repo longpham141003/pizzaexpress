@@ -1,0 +1,15 @@
+@model List<Review>
+@{ ViewData["Title"] = "Quản lý Đánh giá"; }
+<div class="page-header"><h2>Đánh giá khách hàng (@Model.Count)</h2><a href="/admin/reviews/create" class="btn btn-primary"><span class="material-symbols-outlined">add</span> Thêm đánh giá</a></div>
+<div class="card"><div class="table-responsive"><table class="admin-table">
+<thead><tr><th>Avatar</th><th>Khách hàng</th><th>Nội dung</th><th>TT</th><th>Trạng thái</th><th class="text-right">Thao tác</th></tr></thead>
+<tbody>
+@foreach (var r in Model){<tr>
+<td>@if(!string.IsNullOrEmpty(r.AvatarPath)){<img src="@(r.AvatarPath.StartsWith("/") ? r.AvatarPath : "/" + r.AvatarPath)" class="thumb" style="border-radius:50%" alt="" />}</td>
+<td class="fw-500">@r.CustomerName</td><td class="text-sm" style="max-width:300px">@(r.Content.Length > 100 ? r.Content[..100] + "..." : r.Content)</td><td>@r.SortOrder</td>
+<td>@(r.IsActive ? Html.Raw("<span class='badge badge-success'>Hiện</span>") : Html.Raw("<span class='badge badge-warning'>Ẩn</span>"))</td>
+<td class="actions"><a href="/admin/reviews/edit/@r.Id" class="btn btn-sm btn-secondary"><span class="material-symbols-outlined">edit</span></a>
+<form id="del-rev-@r.Id" method="post" asp-action="Delete" asp-route-id="@r.Id" style="display:inline"></form>
+<button class="btn btn-sm btn-danger" onclick="confirmDelete('del-rev-@r.Id','@r.CustomerName')"><span class="material-symbols-outlined">delete</span></button></td></tr>}
+@if (!Model.Any()){<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">star</span><p>Chưa có đánh giá nào</p></div></td></tr>}
+</tbody></table></div></div>

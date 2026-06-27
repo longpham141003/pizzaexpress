@@ -1,0 +1,35 @@
+@{ ViewData["Title"] = "Sao lưu & Khôi phục"; }
+
+<div class="page-header"><h2>Sao lưu & Khôi phục dữ liệu</h2></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+    <!-- Export -->
+    <div class="card">
+        <div class="card-header"><h3>📤 Xuất dữ liệu (Export)</h3></div>
+        <div class="card-body">
+            <p class="text-muted">Xuất toàn bộ dữ liệu (danh mục, sản phẩm, banner, chi nhánh, đánh giá, menu, features, cài đặt) ra file JSON.</p>
+            <form method="post" asp-action="Export" style="margin-top:1rem">
+                <button type="submit" class="btn btn-primary">
+                    <span class="material-symbols-outlined">download</span> Tải file backup
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Import -->
+    <div class="card">
+        <div class="card-header"><h3>📥 Nhập dữ liệu (Import)</h3></div>
+        <div class="card-body">
+            <p class="text-muted">Nhập dữ liệu từ file JSON backup. Dữ liệu trùng lặp sẽ được bỏ qua tự động.</p>
+            <form method="post" asp-action="Import" enctype="multipart/form-data" style="margin-top:1rem">
+                <div class="form-group">
+                    <input type="file" name="file" accept=".json" class="form-control" required />
+                    <span class="form-hint">ℹ️ Chỉ chấp nhận file .json từ chức năng Export</span>
+                </div>
+                <button type="submit" class="btn btn-secondary" onclick="return confirm('Bạn chắc chắn muốn import dữ liệu?')">
+                    <span class="material-symbols-outlined">upload</span> Import dữ liệu
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

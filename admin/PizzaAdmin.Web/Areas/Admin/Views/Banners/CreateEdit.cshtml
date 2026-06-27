@@ -1,0 +1,46 @@
+@model Banner
+@{ ViewData["Title"] = Model.Id == 0 ? "Thêm banner" : "Sửa banner"; }
+
+<div class="page-header">
+    <h2>@ViewData["Title"]</h2>
+    <a href="/admin/banners" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a>
+</div>
+<div class="card" style="max-width:700px">
+    <div class="card-body">
+        <form method="post" asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Title">Tiêu đề</label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="LinkUrl">Đường dẫn khi click</label>
+                <input asp-for="LinkUrl" class="form-control" placeholder="https://..." />
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Ảnh Desktop</label>
+                    @if (!string.IsNullOrEmpty(Model.DesktopImagePath)){<img id="desktopPreview" src="@(Model.DesktopImagePath.StartsWith("/") ? Model.DesktopImagePath : "/" + Model.DesktopImagePath)" class="img-preview" style="display:block;margin-bottom:0.5rem" />}
+                    else {<img id="desktopPreview" class="img-preview" style="display:none;margin-bottom:0.5rem" />}
+                    <input type="file" name="desktopImage" accept="image/*" class="form-control" onchange="previewImage(this,'desktopPreview')" />
+                </div>
+                <div class="form-group">
+                    <label>Ảnh Mobile</label>
+                    @if (!string.IsNullOrEmpty(Model.MobileImagePath)){<img id="mobilePreview" src="@(Model.MobileImagePath.StartsWith("/") ? Model.MobileImagePath : "/" + Model.MobileImagePath)" class="img-preview" style="display:block;margin-bottom:0.5rem" />}
+                    else {<img id="mobilePreview" class="img-preview" style="display:none;margin-bottom:0.5rem" />}
+                    <input type="file" name="mobileImage" accept="image/*" class="form-control" onchange="previewImage(this,'mobilePreview')" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="SortOrder">Thứ tự</label>
+                    <input asp-for="SortOrder" type="number" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Trạng thái</label>
+                    <label class="form-check" style="margin-top:0.5rem"><input asp-for="IsActive" type="checkbox" /><span>Hiển thị</span></label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary"><span class="material-symbols-outlined">save</span> Lưu banner</button>
+        </form>
+    </div>
+</div>

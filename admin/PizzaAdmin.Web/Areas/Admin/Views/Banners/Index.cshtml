@@ -1,0 +1,32 @@
+@model List<Banner>
+@{ ViewData["Title"] = "Quản lý Banner"; }
+
+<div class="page-header">
+    <h2>Banner (@Model.Count)</h2>
+    <a href="/admin/banners/create" class="btn btn-primary"><span class="material-symbols-outlined">add</span> Thêm banner</a>
+</div>
+<div class="card">
+    <div class="table-responsive">
+        <table class="admin-table">
+            <thead><tr><th>Ảnh Desktop</th><th>Tiêu đề</th><th>Link</th><th>Thứ tự</th><th>Trạng thái</th><th class="text-right">Thao tác</th></tr></thead>
+            <tbody>
+            @foreach (var b in Model)
+            {
+                <tr>
+                    <td>@if (!string.IsNullOrEmpty(b.DesktopImagePath)){<img src="@(b.DesktopImagePath.StartsWith("/") ? b.DesktopImagePath : "/" + b.DesktopImagePath)" class="thumb" style="width:120px;height:auto" alt="" />}</td>
+                    <td class="fw-500">@b.Title</td>
+                    <td class="text-muted text-sm" style="max-width:200px;overflow:hidden;text-overflow:ellipsis">@b.LinkUrl</td>
+                    <td>@b.SortOrder</td>
+                    <td>@(b.IsActive ? Html.Raw("<span class='badge badge-success'>Hiện</span>") : Html.Raw("<span class='badge badge-warning'>Ẩn</span>"))</td>
+                    <td class="actions">
+                        <a href="/admin/banners/edit/@b.Id" class="btn btn-sm btn-secondary"><span class="material-symbols-outlined">edit</span></a>
+                        <form id="del-ban-@b.Id" method="post" asp-action="Delete" asp-route-id="@b.Id" style="display:inline"></form>
+                        <button class="btn btn-sm btn-danger" onclick="confirmDelete('del-ban-@b.Id','@b.Title')"><span class="material-symbols-outlined">delete</span></button>
+                    </td>
+                </tr>
+            }
+            @if (!Model.Any()){<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">layers</span><p>Chưa có banner nào</p></div></td></tr>}
+            </tbody>
+        </table>
+    </div>
+</div>

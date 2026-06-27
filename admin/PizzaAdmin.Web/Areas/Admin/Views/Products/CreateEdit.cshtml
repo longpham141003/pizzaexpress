@@ -1,0 +1,135 @@
+@model Product
+@{ ViewData["Title"] = Model.Id == 0 ? "Thêm sản phẩm" : $"Sửa: {Model.Name}"; }
+
+<div class="page-header">
+    <h2>@ViewData["Title"]</h2>
+    <a href="/admin/products" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a>
+</div>
+
+<form method="post" asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id" enctype="multipart/form-data">
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem">
+    <!-- Main -->
+    <div>
+        <div class="card mb-3">
+            <div class="card-header"><h3>Thông tin sản phẩm</h3></div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Name">Tên sản phẩm</label>
+                    <input asp-for="Name" class="form-control" placeholder="VD: P1. Beefy Pizza" />
+                    <span asp-validation-for="Name" class="field-validation-error"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Ingredients">Thành phần</label>
+                    <textarea asp-for="Ingredients" class="form-control" rows="2" placeholder="Thịt bò xay, ngô, sốt BBQ, pho mai..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Mô tả chi tiết</label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="card mb-3">
+            <div class="card-header"><h3>Giá bán</h3></div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="form-check">
+                        <input asp-for="HasVariants" type="checkbox" onchange="toggleVariants(this)" />
+                        <span>Sản phẩm có nhiều kích cỡ (S/M/L)</span>
+                    </label>
+                </div>
+
+                <div id="singlePriceSection" style="display:@(Model.HasVariants ? "none" : "block")">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label asp-for="SinglePrice">Giá bán (VNĐ)</label>
+                            <input asp-for="SinglePrice" type="number" class="form-control" min="0" value="@Model.SinglePrice?.ToString(System.Globalization.CultureInfo.InvariantCulture)" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SingleSalePrice">Giá khuyến mại</label>
+                            <input asp-for="SingleSalePrice" type="number" class="form-control" min="0" value="@Model.SingleSalePrice?.ToString(System.Globalization.CultureInfo.InvariantCulture)" />
+                            <span class="form-hint">ℹ️ Để trống nếu không có khuyến mại</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="variantsSection" style="display:@(Model.HasVariants ? "block" : "none")">
+                    <table class="admin-table" style="margin-bottom:1rem">
+                        <thead><tr><th>Size</th><th>Nhãn</th><th>Giá</th><th>Giá KM</th><th>TT</th><th></th></tr></thead>
+                        <tbody id="variantsBody">
+                        @if (Model.Variants != null)
+                        {
+                            for (int i = 0; i < Model.Variants.Count; i++)
+                            {
+                                <tr>
+                                    <td><input name="Variants[@i].SizeName" value="@Model.Variants[i].SizeName" class="form-control" /></td>
+                                    <td><input name="Variants[@i].SizeLabel" value="@Model.Variants[i].SizeLabel" class="form-control" /></td>
+                                    <td><input name="Variants[@i].Price" value="@Model.Variants[i].Price.ToString(System.Globalization.CultureInfo.InvariantCulture)" type="number" class="form-control" min="0" /></td>
+                                    <td><input name="Variants[@i].SalePrice" value="@Model.Variants[i].SalePrice?.ToString(System.Globalization.CultureInfo.InvariantCulture)" type="number" class="form-control" min="0" /></td>
+                                    <td><input name="Variants[@i].SortOrder" value="@Model.Variants[i].SortOrder" type="number" class="form-control" style="width:60px" /></td>
+                                    <td><button type="button" class="btn btn-sm btn-danger" onclick="this.closest('tr').remove()"><span class="material-symbols-outlined">delete</span></button></td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="addVariantRow()">
+                        <span class="material-symbols-outlined">add</span> Thêm kích cỡ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div>
+        <div class="card mb-3">
+            <div class="card-header"><h3>Phân loại</h3></div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="CategoryId">Danh mục</label>
+                    <select asp-for="CategoryId" asp-items="@((SelectList)ViewBag.CategoryList)" class="form-control">
+                        <option value="">Chọn danh mục</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SortOrder">Thứ tự hiển thị</label>
+                    <input asp-for="SortOrder" type="number" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="form-check">
+                        <input asp-for="IsActive" type="checkbox" />
+                        <span>Hiển thị trên website</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header"><h3>Ảnh sản phẩm</h3></div>
+            <div class="card-body">
+                @if (!string.IsNullOrEmpty(Model.ImagePath))
+                {
+                    <img src="@(Model.ImagePath.StartsWith("/") ? Model.ImagePath : "/" + Model.ImagePath)" class="img-preview" id="imgPreview" style="display:block;margin-bottom:0.75rem" />
+                }
+                else
+                {
+                    <img id="imgPreview" class="img-preview" style="display:none;margin-bottom:0.75rem" />
+                }
+                <input type="file" name="imageFile" accept="image/*" class="form-control" onchange="previewImage(this,'imgPreview')" />
+                <span class="form-hint">ℹ️ Tối đa 5MB. JPG, PNG, WebP.</span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-100" style="justify-content:center">
+            <span class="material-symbols-outlined">save</span> Lưu sản phẩm
+        </button>
+    </div>
+</div>
+</form>
+
+<script>
+    // Init variant index for new rows
+    variantIndex = @(Model.Variants?.Count ?? 0);
+</script>

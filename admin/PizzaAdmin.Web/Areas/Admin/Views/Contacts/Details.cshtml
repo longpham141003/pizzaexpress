@@ -1,0 +1,42 @@
+@model PizzaAdmin.Web.Models.Entities.Contact
+@{ ViewData["Title"] = "Chi tiết liên hệ"; }
+
+<div class="page-header">
+    <h2>Chi tiết liên hệ</h2>
+    <a href="/admin/contacts" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a>
+</div>
+
+<div class="card" style="max-width:700px">
+    <div class="card-body">
+        <div class="form-group">
+            <label class="form-label text-muted text-sm">Họ tên</label>
+            <p class="fw-600">@Model.Name</p>
+        </div>
+        <div class="form-group">
+            <label class="form-label text-muted text-sm">Email</label>
+            <p>@(Model.Email ?? "—")</p>
+        </div>
+        <div class="form-group">
+            <label class="form-label text-muted text-sm">Điện thoại</label>
+            <p>@(Model.Phone ?? "—")</p>
+        </div>
+        <div class="form-group">
+            <label class="form-label text-muted text-sm">Nội dung</label>
+            <p style="white-space:pre-wrap">@(Model.Message ?? "—")</p>
+        </div>
+        <div class="form-group">
+            <label class="form-label text-muted text-sm">Ngày gửi</label>
+            <p class="text-muted">@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm:ss")</p>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-between">
+        <form id="del-contact-@Model.Id" method="post" asp-action="Delete" asp-route-id="@Model.Id" style="display:inline">
+            @Html.AntiForgeryToken()
+        </form>
+        <button class="btn btn-danger btn-sm" onclick="confirmDelete('del-contact-@Model.Id','@Model.Name')"><span class="material-symbols-outlined">delete</span> Xóa</button>
+        @if (Model.Email != null)
+        {
+            <a href="mailto:@Model.Email" class="btn btn-primary btn-sm"><span class="material-symbols-outlined">reply</span> Trả lời email</a>
+        }
+    </div>
+</div>

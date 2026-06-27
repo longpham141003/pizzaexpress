@@ -1,0 +1,15 @@
+@model Location
+@{ ViewData["Title"] = Model.Id == 0 ? "Thêm chi nhánh" : "Sửa chi nhánh"; }
+<div class="page-header"><h2>@ViewData["Title"]</h2><a href="/admin/locations" class="btn btn-secondary"><span class="material-symbols-outlined">arrow_back</span> Quay lại</a></div>
+<div class="card" style="max-width:600px"><div class="card-body">
+<form method="post" asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id">
+<div class="form-group"><label asp-for="Name">Tên chi nhánh</label><input asp-for="Name" class="form-control" placeholder="VD: CN1 Ngọc Khánh" /></div>
+<div class="form-group"><label asp-for="Address">Địa chỉ</label><input asp-for="Address" class="form-control" placeholder="107 D3 Ngọc Khánh, Giảng Võ" /></div>
+<div class="form-group"><label asp-for="Phone">Điện thoại</label><input asp-for="Phone" class="form-control" /></div>
+<div class="form-group"><label asp-for="MapUrl">Link Google Map</label><input asp-for="MapUrl" class="form-control" placeholder="https://maps.google.com/..." /></div>
+<div class="form-row">
+<div class="form-group"><label asp-for="SortOrder">Thứ tự</label><input asp-for="SortOrder" type="number" class="form-control" /></div>
+<div class="form-group"><label>Trạng thái</label><label class="form-check" style="margin-top:0.5rem"><input asp-for="IsActive" type="checkbox" /><span>Hiển thị</span></label></div>
+</div>
+<button type="submit" class="btn btn-primary"><span class="material-symbols-outlined">save</span> Lưu</button>
+</form></div></div>

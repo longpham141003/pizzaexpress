@@ -1,0 +1,13 @@
+@model List<Location>
+@{ ViewData["Title"] = "Quản lý Chi nhánh"; }
+<div class="page-header"><h2>Chi nhánh (@Model.Count)</h2><a href="/admin/locations/create" class="btn btn-primary"><span class="material-symbols-outlined">add</span> Thêm chi nhánh</a></div>
+<div class="card"><div class="table-responsive"><table class="admin-table">
+<thead><tr><th>Tên</th><th>Địa chỉ</th><th>Điện thoại</th><th>TT</th><th>Trạng thái</th><th class="text-right">Thao tác</th></tr></thead>
+<tbody>
+@foreach (var l in Model){<tr><td class="fw-500">@l.Name</td><td>@l.Address</td><td class="text-muted">@l.Phone</td><td>@l.SortOrder</td>
+<td>@(l.IsActive ? Html.Raw("<span class='badge badge-success'>Hiện</span>") : Html.Raw("<span class='badge badge-warning'>Ẩn</span>"))</td>
+<td class="actions"><a href="/admin/locations/edit/@l.Id" class="btn btn-sm btn-secondary"><span class="material-symbols-outlined">edit</span></a>
+<form id="del-loc-@l.Id" method="post" asp-action="Delete" asp-route-id="@l.Id" style="display:inline"></form>
+<button class="btn btn-sm btn-danger" onclick="confirmDelete('del-loc-@l.Id','@l.Name')"><span class="material-symbols-outlined">delete</span></button></td></tr>}
+@if (!Model.Any()){<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">location_on</span><p>Chưa có chi nhánh nào</p></div></td></tr>}
+</tbody></table></div></div>
