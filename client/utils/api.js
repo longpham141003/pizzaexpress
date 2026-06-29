@@ -3,7 +3,9 @@ import siteContent from '../data/site-content.json';
 import blogPosts from '../data/blog-posts.json';
 import customPages from '../data/custom-pages.json';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5290/api/public';
+const isServer = typeof window === 'undefined';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ||
+  (isServer ? 'http://localhost:5290/api/public' : '/api/public');
 
 // Helper to handle fetch with timeout & fallback
 async function fetchWithFallback(endpoint, mockData) {
@@ -80,8 +82,8 @@ export async function getBanners() {
   return data.map(b => ({
     id: b.id || null,
     title: b.title || null,
-    desktop: b.desktopImagePath ? `http://localhost:5290/${b.desktopImagePath}` : (b.desktopImage || b.desktop || null),
-    mobile: b.mobileImagePath ? `http://localhost:5290/${b.mobileImagePath}` : (b.mobileImage || b.mobile || null),
+    desktop: b.desktopImagePath ? `/${b.desktopImagePath}` : (b.desktopImage || b.desktop || null),
+    mobile: b.mobileImagePath ? `/${b.mobileImagePath}` : (b.mobileImage || b.mobile || null),
     link: b.linkUrl || b.link || null
   }));
 }
@@ -109,7 +111,7 @@ export async function getProducts(categoryId = null) {
     name: p.name || null,
     description: p.description || null,
     ingredients: p.ingredients || null,
-    image: p.imagePath ? `http://localhost:5290/${p.imagePath}` : (p.image || null),
+    image: p.imagePath ? `/${p.imagePath}` : (p.image || null),
     categoryName: p.categoryName || p.category || null,
     categorySlug: p.categorySlug || p.category || null,
     hasVariants: p.hasVariants || false,
@@ -130,7 +132,7 @@ export async function getFeatures() {
   return data.map(f => ({
     title: f.title || null,
     desc: f.description || f.desc || null,
-    icon: f.iconPath ? `http://localhost:5290/${f.iconPath}` : (f.icon || null)
+    icon: f.iconPath ? `/${f.iconPath}` : (f.icon || null)
   }));
 }
 
@@ -139,7 +141,7 @@ export async function getReviews() {
   const data = await fetchWithFallback('reviews', fallback);
   return data.map(r => ({
     name: r.customerName || r.name || r.customer || null,
-    avatar: r.avatarPath ? `http://localhost:5290/${r.avatarPath}` : (r.avatar || null),
+    avatar: r.avatarPath ? `/${r.avatarPath}` : (r.avatar || null),
     content: r.content || null
   }));
 }
@@ -147,11 +149,11 @@ export async function getReviews() {
 export async function getLocations() {
   const fallback = siteContent.stores || [];
   const data = await fetchWithFallback('locations', fallback);
-  return data.map(l => ({
+  return data.map((l, i) => ({
     address: l.address || null,
     phone: l.phone || null,
     mapUrl: l.mapUrl || null,
-    icon: l.iconPath ? `http://localhost:5290/${l.iconPath}` : (l.icon || '/wp-content/uploads/2018/05/location_icon.png')
+    icon: l.iconPath ? `/${l.iconPath}` : (l.icon || `/wp-content/uploads/2018/05/so_0${i + 1}.png`)
   }));
 }
 
@@ -162,7 +164,7 @@ export async function getPosts() {
     title: p.title || null,
     slug: p.slug || null,
     excerpt: p.summary || p.excerpt || null,
-    image: p.imagePath ? `http://localhost:5290/${p.imagePath}` : (p.image || null),
+    image: p.imagePath ? `/${p.imagePath}` : (p.image || null),
     date: p.createdAt ? p.createdAt.split('T')[0] : (p.date || null)
   }));
 }
@@ -176,7 +178,7 @@ export async function getPost(slug) {
     slug: data.slug || null,
     excerpt: data.summary || data.excerpt || null,
     content: data.content || null,
-    image: data.imagePath ? `http://localhost:5290/${data.imagePath}` : (data.image || null),
+    image: data.imagePath ? `/${data.imagePath}` : (data.image || null),
     date: data.createdAt ? data.createdAt.split('T')[0] : (data.date || null)
   };
 }

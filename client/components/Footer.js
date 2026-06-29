@@ -15,7 +15,7 @@ export default function Footer({ stores: propStores, features = [] }) {
   const activeStores = propStores || stores || [];
 
   const footerLogoUrl = settings?.footerLogoPath
-    ? (settings.footerLogoPath.startsWith('http') ? settings.footerLogoPath : `http://localhost:5290/${settings.footerLogoPath}`)
+    ? (settings.footerLogoPath.startsWith('http') ? settings.footerLogoPath : `/${settings.footerLogoPath}`)
     : "/logo-nia-pizza.png";
 
   const companyName = settings?.companyName || "Công ty TNHH Pizza Express Việt Nam";

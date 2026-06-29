@@ -36,7 +36,7 @@ export default function Header() {
   const fmtPrice = (n) => (n || 0).toLocaleString('vi-VN');
 
   const logoUrl = settings?.logoPath
-    ? (settings.logoPath.startsWith('http') ? settings.logoPath : `http://localhost:5290/${settings.logoPath}`)
+    ? (settings.logoPath.startsWith('http') ? settings.logoPath : `/${settings.logoPath}`)
     : "/logo-nia-pizza.png";
 
   const slogan = settings?.slogan || "Pizza ngon - Giá rẻ - Vận chuyển tận nhà";

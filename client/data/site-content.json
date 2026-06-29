@@ -2,18 +2,18 @@
   "banners": [
     {
       "id": "anh-3",
-      "desktop": "https://www.pizzaexpress.vn/wp-content/uploads/2026/06/Giảm-20-web.jpg",
-      "mobile": "https://www.pizzaexpress.vn/wp-content/uploads/2026/06/Giảm-20-mobile.jpg"
+      "desktop": "/banners/banner-1-desktop.jpg",
+      "mobile": "/banners/banner-1-mobile.jpg"
     },
     {
       "id": "anh-1",
-      "desktop": "https://www.pizzaexpress.vn/wp-content/uploads/2026/06/2-pizza-chỉ-từ-160k-web.jpg",
-      "mobile": "https://www.pizzaexpress.vn/wp-content/uploads/2026/06/2-Pizza-chỉ-từ-160k-mobile.jpg"
+      "desktop": "/banners/banner-2-desktop.jpg",
+      "mobile": "/banners/banner-2-mobile.jpg"
     },
     {
       "id": "anh-32",
-      "desktop": "https://www.pizzaexpress.vn/wp-content/uploads/2024/08/mua-1-pizza-tặng-1-coca.jpg",
-      "mobile": "https://www.pizzaexpress.vn/wp-content/uploads/2024/10/Mua-1-pizza-Tặng-1-coca-Mobile-web-Custom-1-780x585.jpg"
+      "desktop": "/banners/banner-3-desktop.jpg",
+      "mobile": "/banners/banner-3-mobile.jpg"
     }
   ],
   "reviews": [
